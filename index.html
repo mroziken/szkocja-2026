@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Szkocja 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>
+:root { color-scheme: light; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0ede6;color:#1a1a1a;min-height:100vh;}
+.app-header{background:linear-gradient(135deg,#1a3a2a 0%,#2d6a4f 60%,#1a3a2a 100%);color:white;padding:20px 24px 16px;}
+.app-header h1{font-size:1.55rem;font-family:Georgia,serif;letter-spacing:.4px;}
+.app-header .sub{opacity:.8;font-size:.85rem;margin-top:5px;}
+.tab-nav{background:#163320;display:flex;overflow-x:auto;padding:0 12px;gap:2px;}
+.tab-btn{background:none;border:none;color:rgba(255,255,255,.65);padding:11px 18px;cursor:pointer;font-size:.9rem;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;font-family:inherit;}
+.tab-btn.active{color:#e8c84a;border-bottom-color:#e8c84a;font-weight:600;}
+.tab-btn:hover:not(.active){color:#fff;}
+.tab-content{display:none;padding:18px 16px;max-width:860px;margin:0 auto;}
+.tab-content.active{display:block;}
+
+/* ---- CARDS ---- */
+.card{background:#fff;border-radius:12px;margin-bottom:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07);}
+.card-body{padding:16px 18px;}
+
+/* ---- DAY CARDS ---- */
+.day-hdr{padding:13px 18px;color:#fff;display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;}
+.day-hdr:hover{filter:brightness(1.08);}
+.day-num{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;flex-shrink:0;}
+.day-info{flex:1;}
+.day-info h3{font-size:.95rem;font-weight:700;}
+.day-info p{opacity:.82;font-size:.78rem;margin-top:2px;}
+.chev{font-size:.8rem;opacity:.7;transition:transform .2s;}
+.collapsed .chev{transform:rotate(-90deg);}
+.collapsed .day-body{display:none;}
+.d1 .day-hdr{background:linear-gradient(120deg,#2d6a4f,#40916c);}
+.d2 .day-hdr{background:linear-gradient(120deg,#1d3557,#457b9d);}
+.d3 .day-hdr{background:linear-gradient(120deg,#6d3b2a,#a05c3e);}
+.d4 .day-hdr{background:linear-gradient(120deg,#4a1942,#7b2d8b);}
+.d5 .day-hdr{background:linear-gradient(120deg,#1a3a2a,#2d6a4f);}
+.d6 .day-hdr{background:linear-gradient(120deg,#6b4a00,#c8a84b);}
+.day-body{padding:14px 18px;}
+.ev{display:flex;gap:11px;padding:9px 0;border-bottom:1px solid #f2f2ee;}
+.ev:last-child{border-bottom:none;}
+.ev-time{width:58px;font-size:.75rem;font-weight:600;color:#777;flex-shrink:0;padding-top:2px;}
+.ev-body{flex:1;}
+.ev-title{font-weight:600;font-size:.9rem;}
+.ev-desc{font-size:.8rem;color:#555;margin-top:3px;line-height:1.5;}
+.rez{background:#f9f8f0;border:1px solid #e4e0cc;border-radius:8px;padding:9px 13px;margin-top:8px;font-size:.79rem;}
+.rez table{width:100%;border-collapse:collapse;}
+.rez td{padding:2.5px 5px;}
+.rez td:first-child{color:#888;width:120px;white-space:nowrap;}
+.rez td:last-child{font-weight:600;color:#1a1a1a;font-family:monospace;}
+.rez a{color:#2d6a4f;text-decoration:none;}
+.rez a:hover{text-decoration:underline;}
+.tag{display:inline-block;padding:1.5px 7px;border-radius:20px;font-size:.72rem;font-weight:600;margin:1px;}
+.tok{background:#d4edda;color:#155724;}
+.twarn{background:#fff3cd;color:#856404;}
+.tred{background:#f8d7da;color:#721c24;}
+.tblue{background:#cce5ff;color:#004085;}
+
+/* ---- TODO CARD ---- */
+.todo-item{display:flex;gap:9px;padding:7px 0;border-bottom:1px solid #f5f5f5;font-size:.84rem;align-items:flex-start;}
+.todo-item:last-child{border-bottom:none;}
+.todo-icon{width:20px;flex-shrink:0;text-align:center;margin-top:1px;}
+
+/* ---- PLACES ---- */
+.place-hero{height:130px;display:flex;align-items:flex-end;padding:14px 18px;position:relative;}
+.place-hero::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.28);}
+.place-hero-text{position:relative;z-index:1;color:#fff;}
+.place-hero-text h2{font-size:1.25rem;font-family:Georgia,serif;text-shadow:0 2px 6px rgba(0,0,0,.5);}
+.place-hero-text .ptype{font-size:.75rem;opacity:.9;margin-bottom:2px;}
+.ph-edin{background:linear-gradient(160deg,#1d2b3a,#2c5282);}
+.ph-rann{background:linear-gradient(160deg,#1a3a2a,#2d6a4f);}
+.ph-islay{background:linear-gradient(160deg,#1e3a5f,#2c7873);}
+.ph-laga{background:linear-gradient(160deg,#4a2800,#8b5e3c);}
+.ph-mach{background:linear-gradient(160deg,#2d4a1e,#4a7c59);}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0;}
+.fact{background:#f8f8f0;border-radius:8px;padding:9px 11px;}
+.fact .fi{font-size:1.1rem;margin-bottom:3px;}
+.fact .ft{font-size:.79rem;color:#444;line-height:1.4;}
+.plinks{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;}
+.plink{background:#f0f0e8;border:1px solid #ddd;border-radius:6px;padding:5px 11px;font-size:.79rem;color:#2d6a4f;text-decoration:none;}
+.plink:hover{background:#e8f5e9;}
+.pdesc{font-size:.84rem;color:#444;line-height:1.6;margin-bottom:10px;}
+
+/* ---- FINANCES ---- */
+.fin-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+.fin-card{background:#fff;border-radius:12px;padding:14px 12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.07);}
+.fin-card .amt{font-size:1.35rem;font-weight:700;font-family:Georgia,serif;}
+.fin-card .lbl{font-size:.72rem;color:#777;margin-top:3px;}
+.fgreen .amt{color:#2d6a4f;}
+.famber .amt{color:#b8860b;}
+.fblue .amt{color:#1d3557;}
+.fgray .amt{color:#555;}
+.data-tbl{width:100%;border-collapse:collapse;font-size:.8rem;}
+.data-tbl th{text-align:left;padding:7px 9px;background:#f5f5f0;font-weight:600;color:#555;border-bottom:2px solid #e8e8e0;}
+.data-tbl td{padding:8px 9px;border-bottom:1px solid #f0f0e8;vertical-align:middle;}
+.data-tbl tr:last-child td{border-bottom:none;}
+.data-tbl .ra{text-align:right;font-family:monospace;font-weight:600;}
+.spaid{color:#1a6329;font-weight:600;}
+.sunpaid{color:#856404;font-weight:600;}
+.stodo{color:#721c24;font-weight:600;}
+.srow{display:flex;align-items:center;padding:10px 14px;border-radius:10px;gap:11px;margin-bottom:7px;}
+.sowes{background:#fff3cd;border-left:4px solid #ffc107;}
+.sowed{background:#d4edda;border-left:4px solid #28a745;}
+.sname{font-weight:600;flex:1;font-size:.87rem;}
+.sdesc{font-size:.75rem;color:#666;flex:1;}
+.samt{font-family:monospace;font-weight:700;font-size:.9rem;}
+.chart-wrap{position:relative;height:260px;margin:8px 0;}
+.sec-title{font-size:.95rem;font-weight:700;margin-bottom:13px;display:flex;align-items:center;gap:7px;}
+.note{background:#fff3cd;border-radius:8px;padding:11px 13px;font-size:.79rem;color:#856404;border-left:4px solid #ffc107;margin-top:12px;}
+.note-green{background:#d4edda;border-left:4px solid #28a745;color:#155724;}
+.app-footer{text-align:center;padding:18px;color:#aaa;font-size:.73rem;}
+
+@media(max-width:600px){
+  .facts{grid-template-columns:1fr;}
+  .fin-summary{grid-template-columns:1fr 1fr;}
+  .data-tbl{font-size:.72rem;}
+  .data-tbl th,.data-tbl td{padding:5px 6px;}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Szkocja 2026</h1>
+  <div class="sub">3–8 czerwca · 11 uczestników · Edynburg — Loch Rannoch — Islay</div>
+</header>
+
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('plan',this)">📅 Plan podróży</button>
+  <button class="tab-btn" onclick="showTab('places',this)">🗺️ Miejsca</button>
+  <button class="tab-btn" onclick="showTab('finances',this)">💰 Koszty i rozliczenia</button>
+</nav>
+
+<!-- ======== PLAN ======== -->
+<div id="plan" class="tab-content active">
+
+  <div class="card">
+    <div class="card-body">
+      <div class="sec-title">⚠️ Sprawy do zrobienia</div>
+      <div class="todo-item"><span class="todo-icon">🔴</span><div><strong>Prom CalMac 5.06</strong> — dokupić bilet dla 11. osoby: Kennacraig → Port Askaig</div></div>
+      <div class="todo-item"><span class="todo-icon">🔴</span><div><strong>Prom CalMac 7.06</strong> — dokupić bilet powrotny dla 11. osoby: Port Askaig → Kennacraig</div></div>
+      <div class="todo-item"><span class="todo-icon">🔴</span><div><strong>Another Place, The Machrie</strong> — dopisać 11. osobę (nocleg 5–7.06) przez Booking.com</div></div>
+      <div class="todo-item"><span class="todo-icon">⚠️</span><div><strong>Premier Suites Edynburg</strong> — dopisać 11. osobę (nocleg 3–4.06)</div></div>
+      <div class="todo-item"><span class="todo-icon">⚠️</span><div><strong>The Spires Edynburg</strong> — dopisać 11. osobę (nocleg 7–8.06)</div></div>
+      <div class="todo-item"><span class="todo-icon">💳</span><div><strong>Zmiana karty kredytowej</strong> — Loch Rannoch (10 os.), The Spires, Premier Suites</div></div>
+      <div class="todo-item"><span class="todo-icon">✉️</span><div><strong>Destylarnia 4.06</strong> — oczekiwanie na potwierdzenie od Aberfeldy / Dewar's</div></div>
+      <div class="todo-item"><span class="todo-icon">✈️</span><div><strong>Rezerwacje lotów</strong> — brak w folderze, uzupełnić gdy będą</div></div>
+    </div>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="card d1">
+    <div class="day-hdr" onclick="tog(this)">
+      <div class="day-num">1</div>
+      <div class="day-info"><h3>Środa, 3 czerwca — Przylot · Edynburg</h3><p>Check-in Premier Suites · Odbiór samochodów</p></div>
+      <span class="chev">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="ev">
+        <div class="ev-time">popołudnie</div>
+        <div class="ev-body"><div class="ev-title">✈️ Przylot — Edinburgh Airport (EDI)</div><div class="ev-desc"><span class="tag tred">Brak rezerwacji lotów w folderze</span></div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">od 15:00</div>
+        <div class="ev-body">
+          <div class="ev-title">🏨 Premier Suites Edinburgh Fountain Court</div>
+          <div class="ev-desc">121 Grove Street, Edinburgh EH3 8AA · Tel: +44 131 510 4900 · 3 apartamenty / 10 osób</div>
+          <div class="rez"><table>
+            <tr><td>Rezerwacja</td><td>5245.884.350</td></tr>
+            <tr><td>Wymeldowanie</td><td>do 11:00, czwartek 4.06</td></tr>
+            <tr><td>Status</td><td><span class="tag twarn">⚠ 11. osoba — dopisać</span> <span class="tag twarn">💳 Zmiana karty</span></td></tr>
+          </table></div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">od 17:00</div>
+        <div class="ev-body">
+          <div class="ev-title">🚗 Odbiór samochodów — Edinburgh Airport, Car Rental Centre</div>
+          <div class="rez"><table>
+            <tr><td>Auto nr 1</td><td>Budget — Peugeot 5008 (lub podobny)</td></tr>
+            <tr><td>Rezerwacja</td><td>788038776</td></tr>
+            <tr><td>Auto nr 2</td><td>Enterprise Rent-A-Car</td></tr>
+            <tr><td>Potwierdzenie</td><td>710372260</td></tr>
+            <tr><td>Uwaga</td><td><span class="tag twarn">Sprawdzić typ auta nr 2 — łącznie ≥ 11 miejsc</span></td></tr>
+          </table></div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">wieczór</div>
+        <div class="ev-body"><div class="ev-title">🍽️ Kolacja · Old Town · Edinburgh Castle (widok wieczorny)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="card d2">
+    <div class="day-hdr" onclick="tog(this)">
+      <div class="day-num">2</div>
+      <div class="day-info"><h3>Czwartek, 4 czerwca — Edynburg → Loch Rannoch</h3><p>Destylarnia po drodze · Loch Rannoch Hotel and Spa</p></div>
+      <span class="chev">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="ev">
+        <div class="ev-time">do 11:00</div>
+        <div class="ev-body"><div class="ev-title">🧳 Wymeldowanie z Premier Suites</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">~11:30</div>
+        <div class="ev-body">
+          <div class="ev-title">🥃 Wizyta w destylarni — Perthshire</div>
+          <div class="ev-desc">Trasa przez Aberfeldy lub Pitlochry (~2h z Edynburga, dobrze leży na trasie)</div>
+          <div class="rez"><table>
+            <tr><td>Opcja A</td><td><strong>Aberfeldy / Dewar's World of Whisky</strong> (~40 min od Rannoch)</td></tr>
+            <tr><td>Kontakt</td><td>+44 1887 822010 · aberfeldydistillery@dewars.com</td></tr>
+            <tr><td>Status</td><td><span class="tag twarn">⏳ Oczekiwanie na potwierdzenie</span></td></tr>
+            <tr><td>Opcja B</td><td><strong>Blair Athol Distillery</strong>, Pitlochry (~25 min od Rannoch)</td></tr>
+            <tr><td>Rezerwacja</td><td><a href="https://www.malts.com/en/distilleries/blair-athol" target="_blank">malts.com/blair-athol</a></td></tr>
+          </table></div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">od 15:00</div>
+        <div class="ev-body">
+          <div class="ev-title">🏨 Loch Rannoch Hotel and Spa</div>
+          <div class="ev-desc">Kinloch Rannoch, PH16 5PS · Tel: +44 1882 632201 · 5 pokoi (10 os.) + 1 dodatkowy (11. os.) ✅</div>
+          <div class="rez"><table>
+            <tr><td>Rezerwacja</td><td>6891.215.770</td></tr>
+            <tr><td>Wymeldowanie</td><td>do 11:00, piątek 5.06</td></tr>
+            <tr><td>Status</td><td><span class="tag twarn">💳 Zmiana karty kredytowej</span></td></tr>
+          </table></div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">wieczór</div>
+        <div class="ev-body"><div class="ev-title">🛁 Spa · Kolacja · Wieczorny spacer nad Loch Rannoch</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="card d3">
+    <div class="day-hdr" onclick="tog(this)">
+      <div class="day-num">3</div>
+      <div class="day-info"><h3>Piątek, 5 czerwca — Rannoch → Islay (prom)</h3><p>Trasa ~250 km · CalMac 15:30 · The Machrie</p></div>
+      <span class="chev">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="ev">
+        <div class="ev-time">8:00–11:00</div>
+        <div class="ev-body"><div class="ev-title">🍳 Śniadanie i wymeldowanie z Loch Rannoch Hotel</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">~11:00</div>
+        <div class="ev-body"><div class="ev-title">🚗 Przejazd Loch Rannoch → Kennacraig Ferry Terminal</div><div class="ev-desc">Ok. 4h · ~250 km · Przez A82, A819, A83</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">do 15:00</div>
+        <div class="ev-body"><div class="ev-title">⚓ Check-in na promie — Kennacraig Ferry Terminal, PA29 6YF</div><div class="ev-desc">Zamknięcie check-in ~30 min przed odpłynięciem</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">15:30</div>
+        <div class="ev-body">
+          <div class="ev-title">⛴️ Prom CalMac: Kennacraig → Port Askaig (Islay)</div>
+          <div class="ev-desc">2 rezerwacje × 5 osób + 2 auta · Rejs ~2h 5min</div>
+          <div class="rez"><table>
+            <tr><td>Rezerwacja 1</td><td>S2600316718</td></tr>
+            <tr><td>Rezerwacja 2</td><td>S2600316734</td></tr>
+            <tr><td>Przybycie</td><td>Port Askaig ~17:35</td></tr>
+            <tr><td>Uwaga</td><td><span class="tag tred">🔴 11. osoba — brak biletu, dokupić!</span></td></tr>
+          </table></div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">~18:10</div>
+        <div class="ev-body"><div class="ev-title">🚗 Przejazd Port Askaig → The Machrie (~30 min, ~22 km)</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">od 15:00</div>
+        <div class="ev-body">
+          <div class="ev-title">🏨 Another Place, The Machrie — Islay</div>
+          <div class="ev-desc">Low Road, Port Ellen, PA42 7AN · Tel: +44 7817 178935 · 5 pokoi / 10 osób</div>
+          <div class="rez"><table>
+            <tr><td>Rezerwacja</td><td>5954.736.660</td></tr>
+            <tr><td>Wymeldowanie</td><td>do 11:00, niedziela 7.06</td></tr>
+            <tr><td>Uwaga</td><td><span class="tag tred">🔴 11. osoba — brak noclegu, dopisać!</span></td></tr>
+            <tr><td>Uwaga 2</td><td><span class="tag twarn">Zamiana pokoju na lodge — sprawdzić warunki</span></td></tr>
+          </table></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="card d4">
+    <div class="day-hdr" onclick="tog(this)">
+      <div class="day-num">4</div>
+      <div class="day-info"><h3>Sobota, 6 czerwca — Islay · Destylarnie</h3><p>Lagavulin Classic Tour 10:15 · Cały dzień na wyspie</p></div>
+      <span class="chev">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="ev">
+        <div class="ev-time">do 09:45</div>
+        <div class="ev-body"><div class="ev-title">🚗 Wyjazd do Lagavulin (~30 min od The Machrie)</div><div class="ev-desc">Przybyć min. 15 min przed godziną wycieczki!</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">10:15</div>
+        <div class="ev-body">
+          <div class="ev-title">🥃 Lagavulin Classic Tour — 11 biletów ✅</div>
+          <div class="ev-desc">Lagavulin Distillery, PA42 7DX · Tel: +44 1496 302749 · Czas wycieczki: ~1,5h</div>
+          <div class="rez"><table>
+            <tr><td>Booking ID (10 os.)</td><td>8948409</td></tr>
+            <tr><td>Booking ID (11. os.)</td><td>9160507</td></tr>
+            <tr><td>Bilety online</td><td><a href="https://app.anyroad.com/tickets/" target="_blank">app.anyroad.com/tickets</a></td></tr>
+            <tr><td>Anulowanie</td><td>do 48h przed → deadline 4.06.2026 godz. 10:15</td></tr>
+          </table></div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">po południu</div>
+        <div class="ev-body">
+          <div class="ev-title">🥃 Inne destylarnie Islay (wolny wybór)</div>
+          <div class="ev-desc">
+            <span class="tag tblue">Ardbeg</span>
+            <span class="tag tblue">Laphroaig</span>
+            <span class="tag tblue">Bowmore</span>
+            <span class="tag tblue">Bruichladdich</span>
+            <span class="tag tblue">Caol Ila</span>
+            <span class="tag tblue">Bunnahabhain</span>
+          </div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">wieczór</div>
+        <div class="ev-body"><div class="ev-title">🌅 Kolacja w The Machrie · Zachód słońca nad Atlantykiem</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="card d5">
+    <div class="day-hdr" onclick="tog(this)">
+      <div class="day-num">5</div>
+      <div class="day-info"><h3>Niedziela, 7 czerwca — Islay → Edynburg</h3><p>Prom powrotny 15:30 · The Spires Edinburgh</p></div>
+      <span class="chev">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="ev">
+        <div class="ev-time">do 11:00</div>
+        <div class="ev-body"><div class="ev-title">🧳 Wymeldowanie z Another Place, The Machrie</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">do 15:00</div>
+        <div class="ev-body"><div class="ev-title">⚓ Check-in na promie — Port Askaig</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">15:30</div>
+        <div class="ev-body">
+          <div class="ev-title">⛴️ Prom CalMac: Port Askaig → Kennacraig</div>
+          <div class="ev-desc">10 osób + 2 auta · Przybycie ~17:35</div>
+          <div class="rez"><table>
+            <tr><td>Rezerwacja 1</td><td>S2600316718</td></tr>
+            <tr><td>Rezerwacja 2</td><td>S2600316734</td></tr>
+            <tr><td>Uwaga</td><td><span class="tag tred">🔴 11. osoba — brak biletu powrotnego!</span></td></tr>
+          </table></div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">17:35–21:00</div>
+        <div class="ev-body"><div class="ev-title">🚗 Przejazd Kennacraig → Edynburg (~3,5h, ~220 km)</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">od 14:00</div>
+        <div class="ev-body">
+          <div class="ev-title">🏨 The Spires Serviced Apartments Edinburgh</div>
+          <div class="ev-desc">93–95 Hanover Street, EH2 1DJ · Tel: +44 345 270 0090 · 3 apartamenty / 10 osób · ⚠️ Self check-in (instrukcje przyjdą mailem)</div>
+          <div class="rez"><table>
+            <tr><td>Rezerwacja</td><td>6891.240.822</td></tr>
+            <tr><td>Check-in</td><td>od 14:00 (do 24:00)</td></tr>
+            <tr><td>Wymeldowanie</td><td>do 10:00, poniedziałek 8.06</td></tr>
+            <tr><td>Uwaga 1</td><td><span class="tag tred">🔴 11. osoba — brak noclegu, dopisać!</span></td></tr>
+            <tr><td>Uwaga 2</td><td><span class="tag twarn">💳 Zmiana karty kredytowej</span></td></tr>
+          </table></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="card d6">
+    <div class="day-hdr" onclick="tog(this)">
+      <div class="day-num">6</div>
+      <div class="day-info"><h3>Poniedziałek, 8 czerwca — Wylot</h3><p>Wymeldowanie · Zwrot samochodów · Wylot z Edynburga</p></div>
+      <span class="chev">▼</span>
+    </div>
+    <div class="day-body">
+      <div class="ev">
+        <div class="ev-time">do 10:00</div>
+        <div class="ev-body"><div class="ev-title">🧳 Wymeldowanie z The Spires</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">~10:00</div>
+        <div class="ev-body">
+          <div class="ev-title">🚗 Zwrot samochodów — Edinburgh Airport, Car Rental Centre</div>
+          <div class="rez"><table>
+            <tr><td>Auto nr 1 (Budget)</td><td>rez. 788038776</td></tr>
+            <tr><td>Auto nr 2 (Enterprise)</td><td>rez. 710372260</td></tr>
+          </table></div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">popołudnie</div>
+        <div class="ev-body"><div class="ev-title">✈️ Wylot z Edynburga (EDI)</div><div class="ev-desc"><span class="tag tred">Brak rezerwacji lotów — uzupełnić!</span></div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ======== PLACES ======== -->
+<div id="places" class="tab-content">
+
+  <div class="card">
+    <div class="place-hero ph-edin"><div class="place-hero-text"><div class="ptype">🏙️ Stolica Szkocji · Dni 1–2</div><h2>Edynburg</h2></div></div>
+    <div class="card-body">
+      <p class="pdesc">Edynburg to jedno z najpiękniejszych miast Europy — historyczna stolica z zamkiem na wulkanicznej skale, gotyckim Starym Miastem wpisanym na listę UNESCO i eleganckim Nowym Miastem z georgiańską architekturą. W czerwcu słońce zachodzi po 22:00.</p>
+      <div class="facts">
+        <div class="fact"><div class="fi">🏰</div><div class="ft"><strong>Edinburgh Castle</strong> — twierdza z XI w. na szczycie Castle Rock. Widoczna z każdego miejsca w centrum.</div></div>
+        <div class="fact"><div class="fi">🗺️</div><div class="ft"><strong>Royal Mile</strong> — historyczna arteria od zamku do Holyrood Palace, pełna pubów, galerii i ulicznych artystów.</div></div>
+        <div class="fact"><div class="fi">🌄</div><div class="ft"><strong>Arthur's Seat</strong> — wygasły wulkan (251 m), panorama 360° na całe miasto. Wejście ~45 min.</div></div>
+        <div class="fact"><div class="fi">🥃</div><div class="ft"><strong>Whisky bars</strong> — dziesiątki barów ze setkami single malt. The Scotch Whisky Experience na Royal Mile to świetne intro.</div></div>
+        <div class="fact"><div class="fi">🎨</div><div class="ft"><strong>Leith &amp; Stockbridge</strong> — hipsterskie dzielnice z restauracjami, kawiarnią i portowym klimatem.</div></div>
+        <div class="fact"><div class="fi">🌅</div><div class="ft"><strong>Długie wieczory</strong> — w czerwcu zmierzch trwa do 23:00. Zamek podświetlony wieczorem wygląda magicznie.</div></div>
+      </div>
+      <div class="plinks">
+        <a class="plink" href="https://www.visitscotland.com/destinations-maps/edinburgh/" target="_blank">📍 VisitScotland</a>
+        <a class="plink" href="https://www.edinburghcastle.scot/" target="_blank">🏰 Edinburgh Castle</a>
+        <a class="plink" href="https://www.scotchwhiskyexperience.co.uk/" target="_blank">🥃 Scotch Whisky Experience</a>
+        <a class="plink" href="https://maps.app.goo.gl/t9KmQ" target="_blank">🗺️ Google Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="place-hero ph-rann"><div class="place-hero-text"><div class="ptype">🏔️ Wyżyny Szkockie · Dzień 2–3</div><h2>Loch Rannoch & Perthshire</h2></div></div>
+    <div class="card-body">
+      <p class="pdesc">Loch Rannoch to jedno z najpiękniejszych jezior Szkocji — 15 km długości, otoczone starymi lasami sosnowymi Caledonian Forest. Na horyzoncie majestatyczny Schiehallion (1083 m). Idealne miejsce na regenerację w spa przed intensywnym weekendem na Islay.</p>
+      <div class="facts">
+        <div class="fact"><div class="fi">🏔️</div><div class="ft"><strong>Schiehallion</strong> — „Czarodziejska góra Kaledonii", jeden z najpiękniejszych szczytów Szkocji. Wejście ~4h, widoki niesamowite.</div></div>
+        <div class="fact"><div class="fi">🌲</div><div class="ft"><strong>Caledonian Forest</strong> — fragmenty oryginalnego lasu sosnowego liczące tysiące lat. Żyją tu jelenie szkockie i orły.</div></div>
+        <div class="fact"><div class="fi">🏊</div><div class="ft"><strong>Spa &amp; hotel</strong> — basen, jacuzzi, sauna, centrum wellness. Idealne po długim dniu w samochodzie.</div></div>
+        <div class="fact"><div class="fi">🚂</div><div class="ft"><strong>Rannoch Moor</strong> — jedno z najbardziej dzikich miejsc Wysp. Przez moor przebiega legendarna linia kolejowa West Highland Line.</div></div>
+      </div>
+      <div class="plinks">
+        <a class="plink" href="https://www.lochrannoch.co.uk/" target="_blank">🏨 Loch Rannoch Hotel</a>
+        <a class="plink" href="https://www.visitscotland.com/destinations-maps/perthshire/" target="_blank">📍 Perthshire</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="place-hero ph-islay"><div class="place-hero-text"><div class="ptype">🏝️ Wyspa Whisky · Dni 3–5</div><h2>Islay</h2></div></div>
+    <div class="card-body">
+      <p class="pdesc">Islay (wymawiane „Aj-la") to jedna z Hebrydów Wewnętrznych, światowa stolica torfowej whisky. Na wyspie działa 9 destylarni! Poza whisky — dzikie wybrzeże atlantyckie, orły, wydry i jedne z najlepszych owoców morza w Europie.</p>
+      <div class="facts">
+        <div class="fact"><div class="fi">🥃</div><div class="ft"><strong>9 destylarni</strong> — Lagavulin, Laphroaig, Ardbeg, Bowmore, Bruichladdich, Caol Ila, Bunnahabhain, Kilchoman, Ardnahoe.</div></div>
+        <div class="fact"><div class="fi">🌊</div><div class="ft"><strong>Torf i morze</strong> — intensywny, dymny smak whisky z Islay pochodzi od miejscowego torfu i atlantyckiego powietrza.</div></div>
+        <div class="fact"><div class="fi">🦅</div><div class="ft"><strong>Przyroda</strong> — bieliki, sokoły, wydry morskie, foki. Jedno z najważniejszych miejsc ptasich w Europie.</div></div>
+        <div class="fact"><div class="fi">🦞</div><div class="ft"><strong>Owoce morza</strong> — homary, kraby, ostrygi, krewetki prosto z Atlantyku. Restauracje są znakomite.</div></div>
+        <div class="fact"><div class="fi">🏖️</div><div class="ft"><strong>Plaże</strong> — dzikie piaszczyste plaże atlantyckie (Machir Bay, The Big Strand). Widok na Irlandię przy dobrej pogodzie.</div></div>
+        <div class="fact"><div class="fi">📅</div><div class="ft"><strong>Fèis Ìle</strong> — słynny festiwal whisky (maj). Wasza wizyta tydzień po — spokojniej, ale klimat wyjątkowy.</div></div>
+      </div>
+      <div class="plinks">
+        <a class="plink" href="https://www.islayinfo.com/" target="_blank">📍 Islay Info</a>
+        <a class="plink" href="https://www.visitscotland.com/destinations-maps/argyll-the-isles/islay/" target="_blank">📍 VisitScotland</a>
+        <a class="plink" href="https://www.calmac.co.uk/" target="_blank">⛴️ CalMac Ferries</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="place-hero ph-laga"><div class="place-hero-text"><div class="ptype">🥃 Destylarnia · Sobota 6.06, godz. 10:15</div><h2>Lagavulin Distillery</h2></div></div>
+    <div class="card-body">
+      <p class="pdesc">Lagavulin (wymawiane „Laga-VU-lin"), założona w 1816 r., to jedna z najbardziej kultowych destylarni świata. Jej whisky — intensywnie torfowa, z nutami morskiej soli i dymu — jest wzorcem stylu „Islay". Lagavulin 16 regularnie wybierana jedną z najlepszych whisky globu.</p>
+      <div class="facts">
+        <div class="fact"><div class="fi">📅</div><div class="ft"><strong>Założona 1816</strong> — ponad 200 lat produkcji. Jedna z najstarszych destylarni Szkocji.</div></div>
+        <div class="fact"><div class="fi">🏆</div><div class="ft"><strong>Nagrody</strong> — Lagavulin 16 i Distillers Edition nieprzerwanie w czołówkach rankingów światowych.</div></div>
+        <div class="fact"><div class="fi">🎬</div><div class="ft"><strong>Pop kultura</strong> — Ron Swanson z „Parks and Recreation" sławnie pił Lagavulin. Destylarnia nawiązała do tego w kampaniach marketingowych.</div></div>
+        <div class="fact"><div class="fi">🌊</div><div class="ft"><strong>Lokalizacja</strong> — bezpośrednio przy Lagavulin Bay. Białe budynki z charakterystycznymi kominami tuż przy morzu.</div></div>
+        <div class="fact"><div class="fi">⏱️</div><div class="ft"><strong>Wasza wycieczka</strong> — Classic Tour, ~1,5h, 11 osób. Zwiedzanie produkcji + degustacja. Przybyć min. 15 min przed 10:15!</div></div>
+        <div class="fact"><div class="fi">🚗</div><div class="ft"><strong>Dojazd</strong> — ok. 30 min jazdy od The Machrie (przez A846 i B8016).</div></div>
+      </div>
+      <div class="plinks">
+        <a class="plink" href="https://www.malts.com/en/distilleries/lagavulin" target="_blank">🥃 Oficjalna strona</a>
+        <a class="plink" href="https://app.anyroad.com/tickets/" target="_blank">🎟️ Twoje bilety (AnyRoad)</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="place-hero ph-mach"><div class="place-hero-text"><div class="ptype">🏨 Baza na Islay · Dni 3–5</div><h2>Another Place, The Machrie</h2></div></div>
+    <div class="card-body">
+      <p class="pdesc">The Machrie to luksusowy hotel z 18-dołkowym links course i bezpośrednim dostępem do atlantyckiej plaży. Część butikowej sieci Another Place Hotels, specjalizującej się w hotelach w dzikich zakątkach Wysp Brytyjskich.</p>
+      <div class="facts">
+        <div class="fact"><div class="fi">⛳</div><div class="ft"><strong>Golf 1891</strong> — historyczne pole links, jedno z najbardziej odludnych na świecie. Widok na Atlantyk z każdego dołka.</div></div>
+        <div class="fact"><div class="fi">🏖️</div><div class="ft"><strong>Plaża atlantycka</strong> — hotel przy piaszczystej plaży. Przy dobrej pogodzie widać wybrzeże Irlandii (~40 km).</div></div>
+        <div class="fact"><div class="fi">🍽️</div><div class="ft"><strong>Restauracja</strong> — lokalne owoce morza, whisky z sąsiednich destylarni. Bardzo wysoko oceniana.</div></div>
+        <div class="fact"><div class="fi">🛖</div><div class="ft"><strong>Lodges</strong> — wolnostojące domki z kominkiem i prywatnym tarasem. Warto spróbować zamienić jeden pokój.</div></div>
+      </div>
+      <div class="plinks">
+        <a class="plink" href="https://www.another.place/the-machrie" target="_blank">🏨 The Machrie</a>
+        <a class="plink" href="https://www.booking.com" target="_blank">📋 Booking.com</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ======== FINANCES ======== -->
+<div id="finances" class="tab-content">
+
+  <div class="fin-summary">
+    <div class="fin-card fgreen"><div class="amt">42 110 zł</div><div class="lbl">Suma znanych wydatków</div></div>
+    <div class="fin-card famber"><div class="amt">3 828 zł</div><div class="lbl">Koszt / osoba (11 os.)</div></div>
+    <div class="fin-card fblue"><div class="amt">25 000 zł</div><div class="lbl">Zebrano od uczestników</div></div>
+    <div class="fin-card fgray"><div class="amt">11</div><div class="lbl">Uczestników</div></div>
+  </div>
+
+  <div class="card"><div class="card-body">
+    <div class="sec-title">📋 Wszystkie wydatki</div>
+    <div style="overflow-x:auto;">
+    <table class="data-tbl">
+      <thead><tr><th>#</th><th>Opis</th><th>Termin</th><th class="ra">Kwota</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Premier Suites Edinburgh (3 apt.)</td><td>3–4.06</td><td class="ra">5 616 zł</td><td><span class="sunpaid">Nieopłacone</span></td></tr>
+        <tr><td>2</td><td>Samochód nr 1 — Budget (Peugeot 5008)</td><td>3–8.06</td><td class="ra">1 577 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>3</td><td>Samochód nr 2 — Enterprise (rez. 710372260)</td><td>3–8.06</td><td class="ra">—</td><td><span class="stodo">Kwota TBD</span></td></tr>
+        <tr><td>4</td><td>Loch Rannoch Hotel — 1 pokój (11. os.)</td><td>4–5.06</td><td class="ra">812 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>5</td><td>Loch Rannoch Hotel — 5 pokoi (10 os.)</td><td>4–5.06</td><td class="ra">3 872 zł</td><td><span class="sunpaid">Nieopłacone</span></td></tr>
+        <tr><td>6</td><td>Prom CalMac — tam (Kennacraig → Islay)</td><td>5.06</td><td class="ra">1 000 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>7</td><td>Prom CalMac — powrót (Islay → Kennacraig)</td><td>7.06</td><td class="ra">1 000 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>8</td><td>Another Place, The Machrie (5 pokoi)</td><td>5–7.06</td><td class="ra">22 600 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>9</td><td>Lagavulin Classic Tour (10 biletów)</td><td>6.06</td><td class="ra">1 176 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>10</td><td>Lagavulin — bilet 11. osoby (ID 9160507)</td><td>6.06</td><td class="ra">~110 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>11</td><td>The Spires Edinburgh (3 apt.)</td><td>7–8.06</td><td class="ra">4 458 zł</td><td><span class="sunpaid">Nieopłacone</span></td></tr>
+        <tr><td>12</td><td>Prom CalMac — bilety 11. osoby (×2)</td><td>5.06, 7.06</td><td class="ra">—</td><td><span class="stodo">Do zrobienia</span></td></tr>
+        <tr><td>13</td><td>Noclegi 11. osoby (Machrie, Spires, Premier)</td><td>różne</td><td class="ra">—</td><td><span class="stodo">Do zrobienia</span></td></tr>
+        <tr><td>14</td><td>Loty (brak w folderze)</td><td>3.06, 8.06</td><td class="ra">—</td><td><span class="stodo">Do uzupełnienia</span></td></tr>
+        <tr style="font-weight:700;background:#f8f8f0;"><td colspan="3">RAZEM (znane wydatki)</td><td class="ra">42 110 zł</td><td></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div></div>
+
+  <div class="card"><div class="card-body">
+    <div class="sec-title">📊 Struktura kosztów</div>
+    <div class="chart-wrap"><canvas id="costChart"></canvas></div>
+  </div></div>
+
+  <div class="card"><div class="card-body">
+    <div class="sec-title">💸 Rozliczenie — kto komu winien?</div>
+    <p style="font-size:.82rem;color:#555;margin-bottom:14px;">Michał opłacił wszystkie rachunki (42 110 zł). Każdy uczestnik płaci swojją część — 3 828 zł. Osoby, które przelały 5 000 zł, otrzymają zwrot nadpłaty po finalizacji wszystkich kosztów.</p>
+
+    <div class="note note-green" style="margin-bottom:16px;">
+      💳 <strong>Michał Mrozik — Organizator</strong><br>
+      <span style="font-size:.8rem;">Zapłacił: 42 110 zł &nbsp;·&nbsp; Jego udział: 3 828 zł &nbsp;·&nbsp; Do odzyskania od innych: <strong>38 282 zł</strong></span>
+    </div>
+
+    <div style="font-size:.82rem;font-weight:700;color:#721c24;margin:12px 0 8px;">🔴 Jeszcze nie zapłacili — każdy winien Michałowi 3 828 zł:</div>
+    <div class="srow sowes"><span class="sname">Marcin Iskra</span><span class="sdesc">Wpłacił: 0 zł</span><span class="samt" style="color:#721c24;">winien 3 828 zł</span></div>
+    <div class="srow sowes"><span class="sname">Olek Iskra</span><span class="sdesc">Wpłacił: 0 zł</span><span class="samt" style="color:#721c24;">winien 3 828 zł</span></div>
+    <div class="srow sowes"><span class="sname">Zubrzycki Junior</span><span class="sdesc">Wpłacił: 0 zł</span><span class="samt" style="color:#721c24;">winien 3 828 zł</span></div>
+    <div class="srow sowes"><span class="sname">Marcin Kulasek</span><span class="sdesc">Wpłacił: 0 zł</span><span class="samt" style="color:#721c24;">winien 3 828 zł</span></div>
+    <div class="srow sowes"><span class="sname">Kulasek junior</span><span class="sdesc">Wpłacił: 0 zł</span><span class="samt" style="color:#721c24;">winien 3 828 zł</span></div>
+
+    <div style="font-size:.82rem;font-weight:700;color:#1a6329;margin:16px 0 8px;">✅ Zapłacili 5 000 zł — Michał odda nadpłatę po finalizacji kosztów:</div>
+    <div class="srow sowed"><span class="sname">Andrzej Brodzinski</span><span class="sdesc">Wpłacił 5 000 zł · udział 3 828 zł</span><span class="samt" style="color:#1a6329;">nadpłata +1 172 zł</span></div>
+    <div class="srow sowed"><span class="sname">Rafał Bonter</span><span class="sdesc">Wpłacił 5 000 zł · udział 3 828 zł</span><span class="samt" style="color:#1a6329;">nadpłata +1 172 zł</span></div>
+    <div class="srow sowed"><span class="sname">Bartek Bonter</span><span class="sdesc">Wpłacił 5 000 zł · udział 3 828 zł</span><span class="samt" style="color:#1a6329;">nadpłata +1 172 zł</span></div>
+    <div class="srow sowed"><span class="sname">Zubrzycki Senior</span><span class="sdesc">Wpłacił 5 000 zł · udział 3 828 zł</span><span class="samt" style="color:#1a6329;">nadpłata +1 172 zł</span></div>
+    <div class="srow sowed"><span class="sname">Mariusz</span><span class="sdesc">Wpłacił 5 000 zł · udział 3 828 zł</span><span class="samt" style="color:#1a6329;">nadpłata +1 172 zł</span></div>
+
+    <div class="note" style="margin-top:14px;">⚠️ <strong>Kwoty tymczasowe</strong> — nie obejmują jeszcze: samochodu nr 2, biletów promowych dla 11. osoby, noclegów 11. osoby oraz lotów. Po uzupełnieniu tych pozycji koszt na osobę zostanie przeliczony.</div>
+  </div></div>
+
+</div>
+
+<div class="app-footer">Ostatnia aktualizacja: 6 maja 2026 &nbsp;·&nbsp; Claude — automatyczny monitoring Szkocja 2026</div>
+
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+function tog(hdr) { hdr.parentElement.classList.toggle('collapsed'); }
+
+// Chart
+const ctx = document.getElementById('costChart').getContext('2d');
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['The Machrie (22 600)', 'Premier Suites (5 616)', 'The Spires (4 458)', 'Loch Rannoch (3 872)', 'Prom CalMac (1 999)', 'Auto nr 1 (1 577)', 'Lagavulin (1 286)', 'Rannoch 11.os. (812)'],
+    datasets: [{
+      data: [22600, 5616, 4458, 3872, 1999.58, 1576.72, 1286.28, 811.73],
+      backgroundColor: ['#2d6a4f','#1d3557','#4a1942','#6d4c41','#1e3a5f','#7f5800','#4a2800','#40916c'],
+      borderWidth: 2, borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'right', labels: { font: { size: 10 }, boxWidth: 12, padding: 7 } },
+      tooltip: { callbacks: { label: c => ` ${c.parsed.toLocaleString('pl-PL')} zł` } }
+    }
+  }
+});
+</script>
+</body>
+</html>
