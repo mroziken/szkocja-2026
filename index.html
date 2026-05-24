@@ -137,20 +137,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <!-- ======== PLAN ======== -->
 <div id="plan" class="tab-content active">
 
-  <div class="card">
-    <div class="card-body">
-      <div class="sec-title">⚠️ Sprawy do zrobienia</div>
-      <div class="todo-item"><span class="todo-icon">🔴</span><div><strong>Prom CalMac 5.06</strong> — dokupić bilet dla 11. osoby: Kennacraig → Port Askaig</div></div>
-      <div class="todo-item"><span class="todo-icon">🔴</span><div><strong>Prom CalMac 7.06</strong> — dokupić bilet powrotny dla 11. osoby: Port Askaig → Kennacraig</div></div>
-      <div class="todo-item"><span class="todo-icon">🔴</span><div><strong>Another Place, The Machrie</strong> — dopisać 11. osobę (nocleg 5–7.06) przez Booking.com</div></div>
-      <div class="todo-item"><span class="todo-icon">⚠️</span><div><strong>Premier Suites Edynburg</strong> — dopisać 11. osobę (nocleg 3–4.06)</div></div>
-      <div class="todo-item"><span class="todo-icon">⚠️</span><div><strong>The Spires Edynburg</strong> — dopisać 11. osobę (nocleg 7–8.06)</div></div>
-      <div class="todo-item"><span class="todo-icon">💳</span><div><strong>Zmiana karty kredytowej</strong> — Loch Rannoch (10 os.), The Spires, Premier Suites</div></div>
-      <div class="todo-item"><span class="todo-icon">✉️</span><div><strong>Destylarnia 4.06</strong> — oczekiwanie na potwierdzenie od Aberfeldy / Dewar's</div></div>
-      <div class="todo-item"><span class="todo-icon">✈️</span><div><strong>Rezerwacje lotów</strong> — brak w folderze, uzupełnić gdy będą</div></div>
-    </div>
-  </div>
-
   <!-- DAY 1 -->
   <div class="card d1">
     <div class="day-hdr" onclick="tog(this)">
@@ -171,7 +157,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <div class="rez"><table>
             <tr><td>Rezerwacja</td><td>5245.884.350</td></tr>
             <tr><td>Wymeldowanie</td><td>do 11:00, czwartek 4.06</td></tr>
-            <tr><td>Status</td><td><span class="tag twarn">⚠ 11. osoba — dopisać</span> <span class="tag twarn">💳 Zmiana karty</span></td></tr>
+            <tr><td>Status</td><td><span class="tag tok">✅ Opłacone</span></td></tr>
+            <tr><td>Dokument</td><td><a href="Edynburg-PremierSuitespdf.pdf" target="_blank">📄 Potwierdzenie rezerwacji</a></td></tr>
           </table></div>
         </div>
       </div>
@@ -182,6 +169,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <div class="rez"><table>
             <tr><td>Auto nr 1</td><td>Budget — Peugeot 5008 (lub podobny)</td></tr>
             <tr><td>Rezerwacja</td><td>788038776</td></tr>
+            <tr><td>Dokument nr 1</td><td><a href="samoch%C3%B3d-1.pdf" target="_blank">📄 Voucher Budget</a></td></tr>
             <tr><td>Auto nr 2</td><td>Enterprise Rent-A-Car</td></tr>
             <tr><td>Potwierdzenie</td><td>710372260</td></tr>
             <tr><td>Uwaga</td><td><span class="tag twarn">Sprawdzić typ auta nr 2 — łącznie ≥ 11 miejsc</span></td></tr>
@@ -199,37 +187,56 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="card d2">
     <div class="day-hdr" onclick="tog(this)">
       <div class="day-num">2</div>
-      <div class="day-info"><h3>Czwartek, 4 czerwca — Edynburg → Loch Rannoch</h3><p>Destylarnia po drodze · Loch Rannoch Hotel and Spa</p></div>
+      <div class="day-info"><h3>Czwartek, 4 czerwca — Edynburg → Loch Rannoch</h3><p>Wyjazd 9:00 · Aberfeldy/Dewar's 11:30 · Loch Rannoch ~14:30</p></div>
       <span class="chev">▼</span>
     </div>
     <div class="day-body">
       <div class="ev">
-        <div class="ev-time">do 11:00</div>
-        <div class="ev-body"><div class="ev-title">🧳 Wymeldowanie z Premier Suites</div></div>
+        <div class="ev-time">7:30–8:45</div>
+        <div class="ev-body"><div class="ev-title">🍳 Śniadanie</div><div class="ev-desc">Wcześniej niż zwykle — tego dnia długa trasa i wizyta w destylarni z potwierdzonym terminem!</div></div>
       </div>
       <div class="ev">
-        <div class="ev-time">~11:30</div>
+        <div class="ev-time">do 9:00</div>
+        <div class="ev-body"><div class="ev-title">🧳 Wymeldowanie z Premier Suites</div><div class="ev-desc"><span class="tag tred">⚠ Wcześniejsze wymeldowanie! Rezerwacja pozwala do 11:00, ale musimy wyjechać o 9:00 żeby zdążyć na 11:30 w Aberfeldy.</span></div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">9:00</div>
+        <div class="ev-body"><div class="ev-title">🚗 Wyjazd z Edynburga → Aberfeldy / Dewar's</div><div class="ev-desc">~115 km · ~1h 50min + bufor · Trasa: A9 North przez Perth → Aberfeldy (PH15 2EB)</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">~11:10</div>
+        <div class="ev-body"><div class="ev-title">🅿️ Przyjazd do Aberfeldy — parkowanie, toaleta, kawa</div><div class="ev-desc">Destylarnia jest 20 min drogi za Perth — zatankować auto w Perth lub Aberfeldy przed wizytą.</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">11:30</div>
         <div class="ev-body">
-          <div class="ev-title">🥃 Wizyta w destylarni — Perthshire</div>
-          <div class="ev-desc">Trasa przez Aberfeldy lub Pitlochry (~2h z Edynburga, dobrze leży na trasie)</div>
+          <div class="ev-title">🥃 Aberfeldy / Dewar's World of Whisky — potwierdzona wycieczka</div>
+          <div class="ev-desc">Aberfeldy Distillery, PH15 2EB · Tel: +44 1887 822010 · czas wycieczki: ~1,5h</div>
           <div class="rez"><table>
-            <tr><td>Opcja A</td><td><strong>Aberfeldy / Dewar's World of Whisky</strong> (~40 min od Rannoch)</td></tr>
-            <tr><td>Kontakt</td><td>+44 1887 822010 · aberfeldydistillery@dewars.com</td></tr>
-            <tr><td>Status</td><td><span class="tag twarn">⏳ Oczekiwanie na potwierdzenie</span></td></tr>
-            <tr><td>Opcja B</td><td><strong>Blair Athol Distillery</strong>, Pitlochry (~25 min od Rannoch)</td></tr>
-            <tr><td>Rezerwacja</td><td><a href="https://www.malts.com/en/distilleries/blair-athol" target="_blank">malts.com/blair-athol</a></td></tr>
+            <tr><td>Kontakt</td><td>aberfeldydistillery@dewars.com</td></tr>
+            <tr><td>Status</td><td><span class="tag tok">✅ Potwierdzone (e-mail 7.05.2026)</span></td></tr>
+            <tr><td>Dokument</td><td><a href="75777514_1778188959458.pdf" target="_blank">📄 Invoice #75777514 (£550, 11 os.)</a></td></tr>
           </table></div>
         </div>
       </div>
       <div class="ev">
-        <div class="ev-time">od 15:00</div>
+        <div class="ev-time">~13:00</div>
+        <div class="ev-body"><div class="ev-title">🍽️ Obiad w Aberfeldy lub po drodze</div><div class="ev-desc">Krótki przystanek — miasteczko Aberfeldy ma kilka dobrych pubów nad rzeką Tay.</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">~13:45</div>
+        <div class="ev-body"><div class="ev-title">🚗 Aberfeldy → Loch Rannoch Hotel</div><div class="ev-desc">~35 km · ~45 min · Trasa: B846 przez Tummel Bridge</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">~14:30</div>
         <div class="ev-body">
           <div class="ev-title">🏨 Loch Rannoch Hotel and Spa</div>
-          <div class="ev-desc">Kinloch Rannoch, PH16 5PS · Tel: +44 1882 632201 · 5 pokoi (10 os.) + 1 dodatkowy (11. os.) ✅</div>
+          <div class="ev-desc">Kinloch Rannoch, PH16 5PS · Tel: +44 1882 632201 · Check-in od 15:00 — można zostawić bagaże i skorzystać ze spa wcześniej</div>
           <div class="rez"><table>
             <tr><td>Rezerwacja</td><td>6891.215.770</td></tr>
             <tr><td>Wymeldowanie</td><td>do 11:00, piątek 5.06</td></tr>
-            <tr><td>Status</td><td><span class="tag twarn">💳 Zmiana karty kredytowej</span></td></tr>
+            <tr><td>Status</td><td><span class="tag tok">✅ Opłacone</span></td></tr>
+            <tr><td>Dokument</td><td><a href="loch-rannoch-10osob.pdf" target="_blank">📄 Potwierdzenie rezerwacji</a></td></tr>
           </table></div>
         </div>
       </div>
@@ -244,21 +251,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="card d3">
     <div class="day-hdr" onclick="tog(this)">
       <div class="day-num">3</div>
-      <div class="day-info"><h3>Piątek, 5 czerwca — Rannoch → Islay (prom)</h3><p>Trasa ~250 km · CalMac 15:30 · The Machrie</p></div>
+      <div class="day-info"><h3>Piątek, 5 czerwca — Rannoch → Islay (prom)</h3><p>Wyjazd 9:45 · ~250 km · Prom 15:30 · Islay ~18:40</p></div>
       <span class="chev">▼</span>
     </div>
     <div class="day-body">
       <div class="ev">
-        <div class="ev-time">8:00–11:00</div>
-        <div class="ev-body"><div class="ev-title">🍳 Śniadanie i wymeldowanie z Loch Rannoch Hotel</div></div>
+        <div class="ev-time">7:30–9:00</div>
+        <div class="ev-body"><div class="ev-title">🍳 Śniadanie + pakowanie</div><div class="ev-desc"><span class="tag tred">⚠ Dziś długa trasa — 250 km górskimi drogami. Śniadanie wczesno, wyjazd najpóźniej o 9:45!</span></div></div>
       </div>
       <div class="ev">
-        <div class="ev-time">~11:00</div>
-        <div class="ev-body"><div class="ev-title">🚗 Przejazd Loch Rannoch → Kennacraig Ferry Terminal</div><div class="ev-desc">Ok. 4h · ~250 km · Przez A82, A819, A83</div></div>
+        <div class="ev-time">do 9:30</div>
+        <div class="ev-body"><div class="ev-title">🧳 Wymeldowanie i załadunek samochodów</div><div class="ev-desc">Wymeldowanie do 11:00 — ale wyjeżdżamy ~9:45. Bagaże do aut, zatankować w Kinloch Rannoch lub przy B846.</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">9:45</div>
+        <div class="ev-body"><div class="ev-title">🚗 Wyjazd: Loch Rannoch → Kennacraig</div><div class="ev-desc">~250 km · ~3h 45min jazdy · Trasa: B846 → A827 → A82 (Crianlarich) → A83 (Rest and Be Thankful) → Inveraray → Kennacraig</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">~12:45</div>
+        <div class="ev-body"><div class="ev-title">🍽️ Obiad — Inveraray (30 min postój)</div><div class="ev-desc">Inveraray: piękne miasteczko z zamkiem przy Loch Fyne, ~50 km przed terminalem promowym. Warto się zatrzymać — kilka pubów z owocami morza.</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">~14:15</div>
+        <div class="ev-body"><div class="ev-title">⚓ Przyjazd — Kennacraig Ferry Terminal, PA29 6YF</div><div class="ev-desc">~45 min rezerwy przed zamknięciem check-inu. Zatankować auta w Tarbert lub Kennacraig.</div></div>
       </div>
       <div class="ev">
         <div class="ev-time">do 15:00</div>
-        <div class="ev-body"><div class="ev-title">⚓ Check-in na promie — Kennacraig Ferry Terminal, PA29 6YF</div><div class="ev-desc">Zamknięcie check-in ~30 min przed odpłynięciem</div></div>
+        <div class="ev-body"><div class="ev-title">🎟️ Check-in na promie</div><div class="ev-desc">Zamknięcie odprawy ~30 min przed odpłynięciem — koniecznie przed 15:00!</div></div>
       </div>
       <div class="ev">
         <div class="ev-time">15:30</div>
@@ -267,15 +286,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <div class="ev-desc">2 rezerwacje × 5 osób + 2 auta · Rejs ~2h 5min</div>
           <div class="rez"><table>
             <tr><td>Rezerwacja 1</td><td>S2600316718</td></tr>
+            <tr><td>Bilet 1</td><td><a href="DFP194502887.pdf" target="_blank">📄 S2600316718 (5 os. + auto)</a></td></tr>
             <tr><td>Rezerwacja 2</td><td>S2600316734</td></tr>
+            <tr><td>Bilet 2</td><td><a href="DFP194503131%20(1).pdf" target="_blank">📄 S2600316734 (6 os. + auto)</a></td></tr>
             <tr><td>Przybycie</td><td>Port Askaig ~17:35</td></tr>
-            <tr><td>Uwaga</td><td><span class="tag tred">🔴 11. osoba — brak biletu, dokupić!</span></td></tr>
+            <tr><td>Status</td><td><span class="tag tok">✅ 11 pasażerów + 2 auta</span></td></tr>
           </table></div>
         </div>
       </div>
       <div class="ev">
-        <div class="ev-time">~18:10</div>
-        <div class="ev-body"><div class="ev-title">🚗 Przejazd Port Askaig → The Machrie (~30 min, ~22 km)</div></div>
+        <div class="ev-time">~17:35</div>
+        <div class="ev-body"><div class="ev-title">🚢 Cumowanie w Port Askaig — wyładunek aut</div><div class="ev-desc">~15 min na zjazd z promu i załadowanie ludzi do samochodów.</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">~17:50</div>
+        <div class="ev-body"><div class="ev-title">🚗 Przejazd Port Askaig → The Machrie</div><div class="ev-desc">~22 km · ~35 min · Trasa: A846 south → Port Ellen → Low Road</div></div>
       </div>
       <div class="ev">
         <div class="ev-time">od 15:00</div>
@@ -285,8 +310,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <div class="rez"><table>
             <tr><td>Rezerwacja</td><td>5954.736.660</td></tr>
             <tr><td>Wymeldowanie</td><td>do 11:00, niedziela 7.06</td></tr>
-            <tr><td>Uwaga</td><td><span class="tag tred">🔴 11. osoba — brak noclegu, dopisać!</span></td></tr>
-            <tr><td>Uwaga 2</td><td><span class="tag twarn">Zamiana pokoju na lodge — sprawdzić warunki</span></td></tr>
+            <tr><td>Status</td><td><span class="tag tok">✅ 11 osób</span></td></tr>
+            <tr><td>Dokument</td><td><a href="another-place.pdf" target="_blank">📄 Potwierdzenie rezerwacji</a></td></tr>
+            <tr><td>Uwaga</td><td><span class="tag twarn">Zamiana pokoju na lodge — dodatkowe koszty do rozliczenia na miejscu</span></td></tr>
           </table></div>
         </div>
       </div>
@@ -297,13 +323,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="card d4">
     <div class="day-hdr" onclick="tog(this)">
       <div class="day-num">4</div>
-      <div class="day-info"><h3>Sobota, 6 czerwca — Islay · Destylarnie</h3><p>Lagavulin Classic Tour 10:15 · Cały dzień na wyspie</p></div>
+      <div class="day-info"><h3>Sobota, 6 czerwca — Islay · Destylarnie</h3><p>Wyjazd 9:40 · Lagavulin Tour 10:15 · Wolny dzień na wyspie</p></div>
       <span class="chev">▼</span>
     </div>
     <div class="day-body">
       <div class="ev">
-        <div class="ev-time">do 09:45</div>
-        <div class="ev-body"><div class="ev-title">🚗 Wyjazd do Lagavulin (~30 min od The Machrie)</div><div class="ev-desc">Przybyć min. 15 min przed godziną wycieczki!</div></div>
+        <div class="ev-time">do 9:00</div>
+        <div class="ev-body"><div class="ev-title">🍳 Śniadanie</div><div class="ev-desc">Wcześnie — wycieczka w Lagavulin o 10:15, droga 15 min, ale trzeba być tam na 10:00.</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">9:40</div>
+        <div class="ev-body"><div class="ev-title">🚗 Wyjazd: The Machrie → Lagavulin Distillery</div><div class="ev-desc">~5 km · ~15 min · Trasa: Low Road → A846 → B8016. Parkować przy destylarni.</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">10:00</div>
+        <div class="ev-body"><div class="ev-title">🅿️ Przyjazd do Lagavulin — zameldowanie przy kasie</div><div class="ev-desc">Min. 15 min przed wycieczką. Potwierdzić bilety: ID 8948409 (10 os.) + 9160507 (11. os.)</div></div>
       </div>
       <div class="ev">
         <div class="ev-time">10:15</div>
@@ -313,22 +347,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <div class="rez"><table>
             <tr><td>Booking ID (10 os.)</td><td>8948409</td></tr>
             <tr><td>Booking ID (11. os.)</td><td>9160507</td></tr>
+            <tr><td>Bilety PDF</td><td><a href="Safari.pdf" target="_blank">📄 10 biletów (ID 8948409)</a></td></tr>
             <tr><td>Bilety online</td><td><a href="https://app.anyroad.com/tickets/" target="_blank">app.anyroad.com/tickets</a></td></tr>
             <tr><td>Anulowanie</td><td>do 48h przed → deadline 4.06.2026 godz. 10:15</td></tr>
           </table></div>
         </div>
       </div>
       <div class="ev">
-        <div class="ev-time">po południu</div>
+        <div class="ev-time">~11:45</div>
+        <div class="ev-body"><div class="ev-title">🍽️ Obiad przy destylarni lub w Port Ellen (~3 km, ~5 min)</div><div class="ev-desc">Ardbeg (~3 km dalej) ma świetny pub Old Kiln Café — warty polecenia po wizycie w Lagavulin.</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">13:00–17:00</div>
         <div class="ev-body">
-          <div class="ev-title">🥃 Inne destylarnie Islay (wolny wybór)</div>
-          <div class="ev-desc">
-            <span class="tag tblue">Ardbeg</span>
-            <span class="tag tblue">Laphroaig</span>
-            <span class="tag tblue">Bowmore</span>
-            <span class="tag tblue">Bruichladdich</span>
-            <span class="tag tblue">Caol Ila</span>
-            <span class="tag tblue">Bunnahabhain</span>
+          <div class="ev-title">🥃 Wolny czas — inne destylarnie Islay</div>
+          <div class="ev-desc">Wszystkie w odległości 15–45 min od The Machrie. Odradzamy Caol Ila / Bunnahabhain w ten dzień — za daleko (północ wyspy, ~40 min), zostaw na jutro rano albo zrezygnuj.
+            <br><br><span class="tag tblue">Ardbeg ⭐ (~3 km)</span>
+            <span class="tag tblue">Laphroaig (~4 km)</span>
+            <span class="tag tblue">Bowmore (~15 km)</span>
+            <span class="tag tblue">Bruichladdich (~20 km)</span>
           </div>
         </div>
       </div>
@@ -343,45 +380,59 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="card d5">
     <div class="day-hdr" onclick="tog(this)">
       <div class="day-num">5</div>
-      <div class="day-info"><h3>Niedziela, 7 czerwca — Islay → Edynburg</h3><p>Prom powrotny 15:30 · The Spires Edinburgh</p></div>
+      <div class="day-info"><h3>Niedziela, 7 czerwca — Islay → Edynburg</h3><p>Wymeldowanie 11:00 · Prom 15:30 · Edynburg ~21:00</p></div>
       <span class="chev">▼</span>
     </div>
     <div class="day-body">
       <div class="ev">
         <div class="ev-time">do 11:00</div>
-        <div class="ev-body"><div class="ev-title">🧳 Wymeldowanie z Another Place, The Machrie</div></div>
+        <div class="ev-body"><div class="ev-title">🧳 Wymeldowanie z Another Place, The Machrie</div><div class="ev-desc">Bagaże do aut, zatankować w Port Ellen (ostatnia stacja przed promem).</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">11:00–14:00</div>
+        <div class="ev-body"><div class="ev-title">🆓 Wolny czas na Islay</div><div class="ev-desc">Propozycje w okolicy: Bowmore Distillery (~15 km, ~20 min) · Port Charlotte (~25 km, ~30 min) · plaża Machir Bay (~15 km, 20 min) · Finlaggan — historyczny zamek Lordów Wysp (~25 km, ~30 min)</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">14:00</div>
+        <div class="ev-body"><div class="ev-title">🚗 Wyjazd: The Machrie → Port Askaig</div><div class="ev-desc">~22 km · ~35 min · Trasa: Low Road → A846 north → Port Askaig. Dotrzeć do 14:40 — daje 20 min luzu przed zamknięciem odprawy.</div></div>
       </div>
       <div class="ev">
         <div class="ev-time">do 15:00</div>
-        <div class="ev-body"><div class="ev-title">⚓ Check-in na promie — Port Askaig</div></div>
+        <div class="ev-body"><div class="ev-title">🎟️ Check-in na promie — Port Askaig</div><div class="ev-desc">Zamknięcie odprawy ok. 30 min przed odpłynięciem — koniecznie przed 15:00!</div></div>
       </div>
       <div class="ev">
         <div class="ev-time">15:30</div>
         <div class="ev-body">
           <div class="ev-title">⛴️ Prom CalMac: Port Askaig → Kennacraig</div>
-          <div class="ev-desc">10 osób + 2 auta · Przybycie ~17:35</div>
+          <div class="ev-desc">11 osób + 2 auta · Przybycie ~17:35</div>
           <div class="rez"><table>
             <tr><td>Rezerwacja 1</td><td>S2600316718</td></tr>
+            <tr><td>Bilet 1</td><td><a href="DFP194502887.pdf" target="_blank">📄 S2600316718 (5 os. + auto)</a></td></tr>
             <tr><td>Rezerwacja 2</td><td>S2600316734</td></tr>
-            <tr><td>Uwaga</td><td><span class="tag tred">🔴 11. osoba — brak biletu powrotnego!</span></td></tr>
+            <tr><td>Bilet 2</td><td><a href="DFP194503131%20(1).pdf" target="_blank">📄 S2600316734 (6 os. + auto)</a></td></tr>
+            <tr><td>Status</td><td><span class="tag tok">✅ 11 pasażerów + 2 auta</span></td></tr>
           </table></div>
         </div>
       </div>
       <div class="ev">
-        <div class="ev-time">17:35–21:00</div>
-        <div class="ev-body"><div class="ev-title">🚗 Przejazd Kennacraig → Edynburg (~3,5h, ~220 km)</div></div>
+        <div class="ev-time">~17:45</div>
+        <div class="ev-body"><div class="ev-title">🚗 Wyjazd: Kennacraig → Edynburg</div><div class="ev-desc">~215 km · ~3h · Trasa: A83 → Inveraray → A82 → Dumbarton → M8 → Edinburgh. Szybsza niż droga przez góry — autostrada od Glasgow.</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">~21:00</div>
+        <div class="ev-body"><div class="ev-title">🏙️ Przyjazd do Edynburga</div><div class="ev-desc">Możliwa krótka przerwa obiadowa w okolicach Inveraray lub przy zjeździe z A82 (~ok. 19:30). Pełna kolacja dopiero w Edynburgu.</div></div>
       </div>
       <div class="ev">
         <div class="ev-time">od 14:00</div>
         <div class="ev-body">
           <div class="ev-title">🏨 The Spires Serviced Apartments Edinburgh</div>
-          <div class="ev-desc">93–95 Hanover Street, EH2 1DJ · Tel: +44 345 270 0090 · 3 apartamenty / 10 osób · ⚠️ Self check-in (instrukcje przyjdą mailem)</div>
+          <div class="ev-desc">93–95 Hanover Street, EH2 1DJ · Tel: +44 345 270 0090 · 3 apartamenty / 11 osób · ⚠️ Self check-in (instrukcje przyjdą mailem)</div>
           <div class="rez"><table>
             <tr><td>Rezerwacja</td><td>6891.240.822</td></tr>
             <tr><td>Check-in</td><td>od 14:00 (do 24:00)</td></tr>
             <tr><td>Wymeldowanie</td><td>do 10:00, poniedziałek 8.06</td></tr>
-            <tr><td>Uwaga 1</td><td><span class="tag tred">🔴 11. osoba — brak noclegu, dopisać!</span></td></tr>
-            <tr><td>Uwaga 2</td><td><span class="tag twarn">💳 Zmiana karty kredytowej</span></td></tr>
+            <tr><td>Status</td><td><span class="tag tok">✅ 11 osób · Opłacone</span></td></tr>
+            <tr><td>Dokument</td><td><a href="Edynburg-ServiceApartments.pdf" target="_blank">📄 Potwierdzenie rezerwacji</a></td></tr>
           </table></div>
         </div>
       </div>
@@ -392,27 +443,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="card d6">
     <div class="day-hdr" onclick="tog(this)">
       <div class="day-num">6</div>
-      <div class="day-info"><h3>Poniedziałek, 8 czerwca — Wylot</h3><p>Wymeldowanie · Zwrot samochodów · Wylot z Edynburga</p></div>
+      <div class="day-info"><h3>Poniedziałek, 8 czerwca — Wylot</h3><p>Wymeldowanie 10:00 · Lotnisko ~10:30 · Zwrot aut</p></div>
       <span class="chev">▼</span>
     </div>
     <div class="day-body">
       <div class="ev">
         <div class="ev-time">do 10:00</div>
-        <div class="ev-body"><div class="ev-title">🧳 Wymeldowanie z The Spires</div></div>
+        <div class="ev-body"><div class="ev-title">🧳 Wymeldowanie z The Spires</div><div class="ev-desc">Bagaże do samochodów. The Spires → Edinburgh Airport: ~13 km, ~25–30 min.</div></div>
       </div>
       <div class="ev">
         <div class="ev-time">~10:00</div>
+        <div class="ev-body"><div class="ev-title">🚗 Wyjazd: The Spires → Edinburgh Airport</div><div class="ev-desc">Hanover Street (EH2) → A8/M8 West → Edinburgh Airport. ~13 km, ~25 min.</div></div>
+      </div>
+      <div class="ev">
+        <div class="ev-time">~10:30</div>
         <div class="ev-body">
-          <div class="ev-title">🚗 Zwrot samochodów — Edinburgh Airport, Car Rental Centre</div>
+          <div class="ev-title">🔑 Zwrot samochodów — Car Rental Centre, Edinburgh Airport</div>
+          <div class="ev-desc">Centrum zwrotu aut jest przy terminalu — zjeżdżać za znakami "Car Rental Return".</div>
           <div class="rez"><table>
-            <tr><td>Auto nr 1 (Budget)</td><td>rez. 788038776</td></tr>
+            <tr><td>Auto nr 1 (Budget)</td><td>rez. 788038776 · <a href="samoch%C3%B3d-1.pdf" target="_blank">📄 voucher</a></td></tr>
             <tr><td>Auto nr 2 (Enterprise)</td><td>rez. 710372260</td></tr>
           </table></div>
         </div>
       </div>
       <div class="ev">
         <div class="ev-time">popołudnie</div>
-        <div class="ev-body"><div class="ev-title">✈️ Wylot z Edynburga (EDI)</div><div class="ev-desc"><span class="tag tred">Brak rezerwacji lotów — uzupełnić!</span></div></div>
+        <div class="ev-body"><div class="ev-title">✈️ Wylot z Edynburga (EDI)</div><div class="ev-desc"><span class="tag tred">Brak rezerwacji lotów — uzupełnić!</span> Przybyć do terminalu min. 2h przed wylotem.</div></div>
       </div>
     </div>
   </div>
@@ -522,9 +578,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <div id="finances" class="tab-content">
 
   <div class="fin-summary">
-    <div class="fin-card fgreen"><div class="amt">42 110 zł</div><div class="lbl">Suma znanych wydatków</div></div>
-    <div class="fin-card famber"><div class="amt">3 828 zł</div><div class="lbl">Koszt / osoba (11 os.)</div></div>
-    <div class="fin-card fblue"><div class="amt">25 000 zł</div><div class="lbl">Zebrano od uczestników</div></div>
+    <div class="fin-card fgreen"><div class="amt">50 503 zł</div><div class="lbl">Suma wydatków (wszystkie opłacone)</div></div>
+    <div class="fin-card famber"><div class="amt">4 591 zł</div><div class="lbl">Koszt / osoba (11 os.)</div></div>
+    <div class="fin-card fblue"><div class="amt">48 000 zł</div><div class="lbl">Zebrano od uczestników</div></div>
     <div class="fin-card fgray"><div class="amt">11</div><div class="lbl">Uczestników</div></div>
   </div>
 
@@ -534,21 +590,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <table class="data-tbl">
       <thead><tr><th>#</th><th>Opis</th><th>Termin</th><th class="ra">Kwota</th><th>Status</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td>Premier Suites Edinburgh (3 apt.)</td><td>3–4.06</td><td class="ra">5 616 zł</td><td><span class="sunpaid">Nieopłacone</span></td></tr>
-        <tr><td>2</td><td>Samochód nr 1 — Budget (Peugeot 5008)</td><td>3–8.06</td><td class="ra">1 577 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
-        <tr><td>3</td><td>Samochód nr 2 — Enterprise (rez. 710372260)</td><td>3–8.06</td><td class="ra">—</td><td><span class="stodo">Kwota TBD</span></td></tr>
+        <tr><td>1</td><td>Premier Suites Edinburgh (3 apt., 11 os.)</td><td>3–4.06</td><td class="ra">5 616 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>2</td><td>Samochód nr 1 — Budget (Peugeot 5008, rez. 788038776)</td><td>3–8.06</td><td class="ra">1 577 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>3</td><td>Samochód nr 2 — Enterprise (rez. 710372260)</td><td>3–8.06</td><td class="ra">4 053 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
         <tr><td>4</td><td>Loch Rannoch Hotel — 1 pokój (11. os.)</td><td>4–5.06</td><td class="ra">812 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
-        <tr><td>5</td><td>Loch Rannoch Hotel — 5 pokoi (10 os.)</td><td>4–5.06</td><td class="ra">3 872 zł</td><td><span class="sunpaid">Nieopłacone</span></td></tr>
-        <tr><td>6</td><td>Prom CalMac — tam (Kennacraig → Islay)</td><td>5.06</td><td class="ra">1 000 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
-        <tr><td>7</td><td>Prom CalMac — powrót (Islay → Kennacraig)</td><td>7.06</td><td class="ra">1 000 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
-        <tr><td>8</td><td>Another Place, The Machrie (5 pokoi)</td><td>5–7.06</td><td class="ra">22 600 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
-        <tr><td>9</td><td>Lagavulin Classic Tour (10 biletów)</td><td>6.06</td><td class="ra">1 176 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
-        <tr><td>10</td><td>Lagavulin — bilet 11. osoby (ID 9160507)</td><td>6.06</td><td class="ra">~110 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
-        <tr><td>11</td><td>The Spires Edinburgh (3 apt.)</td><td>7–8.06</td><td class="ra">4 458 zł</td><td><span class="sunpaid">Nieopłacone</span></td></tr>
-        <tr><td>12</td><td>Prom CalMac — bilety 11. osoby (×2)</td><td>5.06, 7.06</td><td class="ra">—</td><td><span class="stodo">Do zrobienia</span></td></tr>
-        <tr><td>13</td><td>Noclegi 11. osoby (Machrie, Spires, Premier)</td><td>różne</td><td class="ra">—</td><td><span class="stodo">Do zrobienia</span></td></tr>
-        <tr><td>14</td><td>Loty (brak w folderze)</td><td>3.06, 8.06</td><td class="ra">—</td><td><span class="stodo">Do uzupełnienia</span></td></tr>
-        <tr style="font-weight:700;background:#f8f8f0;"><td colspan="3">RAZEM (znane wydatki)</td><td class="ra">42 110 zł</td><td></td></tr>
+        <tr><td>5</td><td>Loch Rannoch Hotel — 5 pokoi (10 os., rez. 6891.215.770)</td><td>4–5.06</td><td class="ra">3 872 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>6</td><td>Prom CalMac — tam (Kennacraig → Islay, 10 os. + 2 auta)</td><td>5.06</td><td class="ra">1 000 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>7</td><td>Prom CalMac — powrót (Islay → Kennacraig, 10 os. + 2 auta)</td><td>7.06</td><td class="ra">1 000 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>8</td><td>Another Place, The Machrie (5 pokoi, 10 os.)</td><td>5–7.06</td><td class="ra">22 600 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>9</td><td>Lagavulin Classic Tour (11 biletów, godz. 10:15)</td><td>6.06</td><td class="ra">1 285 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>10</td><td>The Spires Edinburgh (3 apt., 11 os., rez. 6891.240.822)</td><td>7–8.06</td><td class="ra">4 458 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>11</td><td>Prom CalMac — bilet 11. osoby (tam + powrót)</td><td>5.06, 7.06</td><td class="ra">441 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>12</td><td>Nocleg 11. osoby — Islay, The Machrie (5–7.06)</td><td>5–7.06</td><td class="ra">3 790 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>13</td><td>Nocleg 11. osoby — Premier Suites &amp; The Spires</td><td>różne</td><td class="ra">0 zł</td><td><span class="spaid">Dołączone ✓</span></td></tr>
+        <tr><td>14</td><td>Loty</td><td>3.06, 8.06</td><td class="ra">—</td><td><span class="stodo">Opłacone osobno</span></td></tr>
+        <tr style="font-weight:700;background:#f8f8f0;"><td colspan="3">RAZEM</td><td class="ra">50 503 zł</td><td></td></tr>
       </tbody>
     </table>
     </div>
@@ -561,33 +617,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
   <div class="card"><div class="card-body">
     <div class="sec-title">💸 Rozliczenie — kto komu winien?</div>
-    <p style="font-size:.82rem;color:#555;margin-bottom:14px;">Michał opłacił wszystkie rachunki (42 110 zł). Każdy uczestnik płaci swojją część — 3 828 zł. Osoby, które przelały 5 000 zł, otrzymają zwrot nadpłaty po finalizacji wszystkich kosztów.</p>
+    <p style="font-size:.82rem;color:#555;margin-bottom:14px;">Michał opłacił wszystkie rachunki (50 503 zł). Udział każdego uczestnika: 4 591 zł. Zebrano dotychczas: 48 000 zł (wszyscy wpłacili po 5 000 zł, oprócz Marcina Iskry — 3 000 zł).</p>
 
     <div class="note note-green" style="margin-bottom:16px;">
       💳 <strong>Michał Mrozik — Organizator</strong><br>
-      <span style="font-size:.8rem;">Zapłacił: 42 110 zł &nbsp;·&nbsp; Jego udział: 3 828 zł &nbsp;·&nbsp; Do odzyskania od innych: <strong>38 282 zł</strong></span>
+      <span style="font-size:.8rem;">Zapłacił: 50 503 zł &nbsp;·&nbsp; Jego udział: 4 591 zł &nbsp;·&nbsp; Zebrał od innych: 48 000 zł &nbsp;·&nbsp; Jeszcze do rozliczenia: <strong>2 503 zł netto</strong> (zwroty nadpłat minus dopłata Marcina)</span>
     </div>
 
-    <div style="font-size:.82rem;font-weight:700;color:#721c24;margin:12px 0 8px;">🔴 Jeszcze nie zapłacili — każdy winien Michałowi 3 828 zł:</div>
-    <div class="srow sowes"><span class="sname">Marcin Iskra</span><span class="sdesc">Wpłacił: 0 zł</span><span class="samt" style="color:#721c24;">winien 3 828 zł</span></div>
-    <div class="srow sowes"><span class="sname">Olek Iskra</span><span class="sdesc">Wpłacił: 0 zł</span><span class="samt" style="color:#721c24;">winien 3 828 zł</span></div>
-    <div class="srow sowes"><span class="sname">Zubrzycki Junior</span><span class="sdesc">Wpłacił: 0 zł</span><span class="samt" style="color:#721c24;">winien 3 828 zł</span></div>
-    <div class="srow sowes"><span class="sname">Marcin Kulasek</span><span class="sdesc">Wpłacił: 0 zł</span><span class="samt" style="color:#721c24;">winien 3 828 zł</span></div>
-    <div class="srow sowes"><span class="sname">Kulasek junior</span><span class="sdesc">Wpłacił: 0 zł</span><span class="samt" style="color:#721c24;">winien 3 828 zł</span></div>
+    <div style="font-size:.82rem;font-weight:700;color:#721c24;margin:12px 0 8px;">🔴 Niedopłata — wymaga uzupełnienia:</div>
+    <div class="srow sowes"><span class="sname">Marcin Iskra</span><span class="sdesc">Wpłacił: 3 000 zł · udział: 4 591 zł</span><span class="samt" style="color:#721c24;">dopłacić 1 591 zł</span></div>
 
-    <div style="font-size:.82rem;font-weight:700;color:#1a6329;margin:16px 0 8px;">✅ Zapłacili 5 000 zł — Michał odda nadpłatę po finalizacji kosztów:</div>
-    <div class="srow sowed"><span class="sname">Andrzej Brodzinski</span><span class="sdesc">Wpłacił 5 000 zł · udział 3 828 zł</span><span class="samt" style="color:#1a6329;">nadpłata +1 172 zł</span></div>
-    <div class="srow sowed"><span class="sname">Rafał Bonter</span><span class="sdesc">Wpłacił 5 000 zł · udział 3 828 zł</span><span class="samt" style="color:#1a6329;">nadpłata +1 172 zł</span></div>
-    <div class="srow sowed"><span class="sname">Bartek Bonter</span><span class="sdesc">Wpłacił 5 000 zł · udział 3 828 zł</span><span class="samt" style="color:#1a6329;">nadpłata +1 172 zł</span></div>
-    <div class="srow sowed"><span class="sname">Zubrzycki Senior</span><span class="sdesc">Wpłacił 5 000 zł · udział 3 828 zł</span><span class="samt" style="color:#1a6329;">nadpłata +1 172 zł</span></div>
-    <div class="srow sowed"><span class="sname">Mariusz</span><span class="sdesc">Wpłacił 5 000 zł · udział 3 828 zł</span><span class="samt" style="color:#1a6329;">nadpłata +1 172 zł</span></div>
+    <div style="font-size:.82rem;font-weight:700;color:#1a6329;margin:16px 0 8px;">✅ Nadpłata — Michał odda po finalizacji kosztów (~409 zł/os.):</div>
+    <div class="srow sowed"><span class="sname">Andrzej Brodzinski</span><span class="sdesc">Wpłacił 5 000 zł · udział 4 591 zł</span><span class="samt" style="color:#1a6329;">+409 zł</span></div>
+    <div class="srow sowed"><span class="sname">Olek Iskra</span><span class="sdesc">Wpłacił 5 000 zł · udział 4 591 zł</span><span class="samt" style="color:#1a6329;">+409 zł</span></div>
+    <div class="srow sowed"><span class="sname">Rafał Bonter</span><span class="sdesc">Wpłacił 5 000 zł · udział 4 591 zł</span><span class="samt" style="color:#1a6329;">+409 zł</span></div>
+    <div class="srow sowed"><span class="sname">Bartek Bonter</span><span class="sdesc">Wpłacił 5 000 zł · udział 4 591 zł</span><span class="samt" style="color:#1a6329;">+409 zł</span></div>
+    <div class="srow sowed"><span class="sname">Zubrzycki Senior</span><span class="sdesc">Wpłacił 5 000 zł · udział 4 591 zł</span><span class="samt" style="color:#1a6329;">+409 zł</span></div>
+    <div class="srow sowed"><span class="sname">Zubrzycki Junior</span><span class="sdesc">Wpłacił 5 000 zł · udział 4 591 zł</span><span class="samt" style="color:#1a6329;">+409 zł</span></div>
+    <div class="srow sowed"><span class="sname">Marcin Kulasek</span><span class="sdesc">Wpłacił 5 000 zł · udział 4 591 zł</span><span class="samt" style="color:#1a6329;">+409 zł</span></div>
+    <div class="srow sowed"><span class="sname">Kulasek junior</span><span class="sdesc">Wpłacił 5 000 zł · udział 4 591 zł</span><span class="samt" style="color:#1a6329;">+409 zł</span></div>
+    <div class="srow sowed"><span class="sname">Mariusz</span><span class="sdesc">Wpłacił 5 000 zł · udział 4 591 zł</span><span class="samt" style="color:#1a6329;">+409 zł</span></div>
 
-    <div class="note" style="margin-top:14px;">⚠️ <strong>Kwoty tymczasowe</strong> — nie obejmują jeszcze: samochodu nr 2, biletów promowych dla 11. osoby, noclegów 11. osoby oraz lotów. Po uzupełnieniu tych pozycji koszt na osobę zostanie przeliczony.</div>
+    <div class="note note-green" style="margin-top:14px;">✅ <strong>Wszystkie koszty są znane i opłacone.</strong> Pozostaje tylko: dopłata Marcina Iskry (1 591 zł) i zwrot nadpłat 9 osobom (po 409 zł) — do rozliczenia po wyjeździe. Możliwe dodatkowe koszty na miejscu: zamiana pokoju na lodge w The Machrie.</div>
   </div></div>
 
 </div>
 
-<div class="app-footer">Ostatnia aktualizacja: 6 maja 2026 &nbsp;·&nbsp; Claude — automatyczny monitoring Szkocja 2026</div>
+<div class="app-footer">Ostatnia aktualizacja: 24 maja 2026 &nbsp;·&nbsp; Claude — automatyczny monitoring Szkocja 2026</div>
 
 <script>
 function showTab(name, btn) {
@@ -603,10 +659,10 @@ const ctx = document.getElementById('costChart').getContext('2d');
 new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ['The Machrie (22 600)', 'Premier Suites (5 616)', 'The Spires (4 458)', 'Loch Rannoch (3 872)', 'Prom CalMac (1 999)', 'Auto nr 1 (1 577)', 'Lagavulin (1 286)', 'Rannoch 11.os. (812)'],
+    labels: ['The Machrie (22 600)', 'Premier Suites (5 616)', 'The Spires (4 458)', 'Auto nr 2 (4 053)', 'Loch Rannoch (3 872)', 'Nocleg 11.os. Islay (3 790)', 'Prom CalMac (2 441)', 'Auto nr 1 (1 577)', 'Lagavulin (1 285)', 'Rannoch 11.os. (812)'],
     datasets: [{
-      data: [22600, 5616, 4458, 3872, 1999.58, 1576.72, 1286.28, 811.73],
-      backgroundColor: ['#2d6a4f','#1d3557','#4a1942','#6d4c41','#1e3a5f','#7f5800','#4a2800','#40916c'],
+      data: [22600, 5616, 4458, 4053.38, 3872, 3790, 2441.29, 1576.72, 1284.50, 811.73],
+      backgroundColor: ['#2d6a4f','#1d3557','#4a1942','#3d6b8f','#6d4c41','#3a7d5e','#1e3a5f','#7f5800','#4a2800','#40916c'],
       borderWidth: 2, borderColor: '#fff'
     }]
   },
