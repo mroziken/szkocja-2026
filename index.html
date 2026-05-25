@@ -112,6 +112,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .sec-title{font-size:.95rem;font-weight:700;margin-bottom:13px;display:flex;align-items:center;gap:7px;}
 .note{background:#fff3cd;border-radius:8px;padding:11px 13px;font-size:.79rem;color:#856404;border-left:4px solid #ffc107;margin-top:12px;}
 .note-green{background:#d4edda;border-left:4px solid #28a745;color:#155724;}
+.note-red{background:#f8d7da;border-left:4px solid #dc3545;color:#721c24;}
 .app-footer{text-align:center;padding:18px;color:#aaa;font-size:.73rem;}
 
 @media(max-width:600px){
@@ -133,6 +134,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <button class="tab-btn active" onclick="showTab('plan',this)">📅 Plan podróży</button>
   <button class="tab-btn" onclick="showTab('places',this)">🗺️ Miejsca</button>
   <button class="tab-btn" onclick="showTab('finances',this)">💰 Koszty i rozliczenia</button>
+  <button class="tab-btn" onclick="showTab('formalities',this)">✅ Przed wyjazdem</button>
 </nav>
 
 <!-- ======== PLAN ======== -->
@@ -147,8 +149,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
     <div class="day-body">
       <div class="ev">
-        <div class="ev-time">popołudnie</div>
-        <div class="ev-body"><div class="ev-title">✈️ Przylot — Edinburgh Airport (EDI)</div><div class="ev-desc"><span class="tag tred">Brak rezerwacji lotów w folderze</span></div></div>
+        <div class="ev-time">16:10</div>
+        <div class="ev-body">
+          <div class="ev-title">✈️ Przylot — Edinburgh Airport (EDI) · 16:10</div>
+          <div class="ev-desc">
+            <strong>Wylot z Warszawy</strong> 12:25 → Amsterdam AMS (transfer 1h 10 min) → Edinburgh EDI 16:10<br>
+            <span class="tag tok">KL 931</span> &nbsp;lot KLM przez Amsterdam
+          </div>
+        </div>
       </div>
       <div class="ev">
         <div class="ev-time">od 15:00</div>
@@ -171,9 +179,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
             <tr><td>Auto nr 1</td><td>Budget — Peugeot 5008 (lub podobny)</td></tr>
             <tr><td>Rezerwacja</td><td>788038776</td></tr>
             <tr><td>Dokument nr 1</td><td><a href="samoch%C3%B3d-1.pdf" target="_blank">📄 Voucher Budget</a></td></tr>
-            <tr><td>Auto nr 2</td><td>Enterprise Rent-A-Car</td></tr>
-            <tr><td>Potwierdzenie</td><td>710372260</td></tr>
-            <tr><td>Uwaga</td><td><span class="tag twarn">Sprawdzić typ auta nr 2 — łącznie ≥ 11 miejsc</span></td></tr>
+            <tr><td>Auto nr 2</td><td>Enterprise — Ford Tourneo Custom (lub podobny) · 9 miejsc · automat</td></tr>
+            <tr><td>Booking.com</td><td>710372260</td></tr>
+            <tr><td>Enterprise conf.</td><td>2109356135COUNT</td></tr>
+            <tr><td>Dokument nr 2</td><td><a href="Your%20voucher%20-%20Booking.com.pdf" target="_blank">📄 Voucher Enterprise</a></td></tr>
           </table></div>
         </div>
       </div>
@@ -444,7 +453,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="card d6">
     <div class="day-hdr" onclick="tog(this)">
       <div class="day-num">6</div>
-      <div class="day-info"><h3>Poniedziałek, 8 czerwca — Wylot</h3><p>Wymeldowanie 10:00 · Lotnisko ~10:30 · Zwrot aut</p></div>
+      <div class="day-info"><h3>Poniedziałek, 8 czerwca — Wylot</h3><p>Wymeldowanie 10:00 · Zwrot aut (Enterprise 10:00) · Wylot EDI 13:10</p></div>
       <span class="chev">▼</span>
     </div>
     <div class="day-body">
@@ -457,19 +466,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="ev-body"><div class="ev-title">🚗 Wyjazd: The Spires → Edinburgh Airport</div><div class="ev-desc">Hanover Street (EH2) → A8/M8 West → Edinburgh Airport. ~13 km, ~25 min.</div></div>
       </div>
       <div class="ev">
-        <div class="ev-time">~10:30</div>
+        <div class="ev-time">~10:00–10:30</div>
         <div class="ev-body">
           <div class="ev-title">🔑 Zwrot samochodów — Car Rental Centre, Edinburgh Airport</div>
-          <div class="ev-desc">Centrum zwrotu aut jest przy terminalu — zjeżdżać za znakami "Car Rental Return".</div>
+          <div class="ev-desc">Centrum zwrotu aut jest przy terminalu — zjeżdżać za znakami "Car Rental Return". Enterprise ma zaplanowany zwrot na 10:00.</div>
           <div class="rez"><table>
             <tr><td>Auto nr 1 (Budget)</td><td>rez. 788038776 · <a href="samoch%C3%B3d-1.pdf" target="_blank">📄 voucher</a></td></tr>
-            <tr><td>Auto nr 2 (Enterprise)</td><td>rez. 710372260</td></tr>
+            <tr><td>Auto nr 2 (Enterprise)</td><td>rez. 710372260 · zdanie 8.06 godz. 10:00 · <a href="Your%20voucher%20-%20Booking.com.pdf" target="_blank">📄 voucher</a></td></tr>
           </table></div>
         </div>
       </div>
       <div class="ev">
-        <div class="ev-time">popołudnie</div>
-        <div class="ev-body"><div class="ev-title">✈️ Wylot z Edynburga (EDI)</div><div class="ev-desc"><span class="tag tred">Brak rezerwacji lotów — uzupełnić!</span> Przybyć do terminalu min. 2h przed wylotem.</div></div>
+        <div class="ev-time">13:10</div>
+        <div class="ev-body">
+          <div class="ev-title">✈️ Wylot z Edynburga (EDI) · 13:10</div>
+          <div class="ev-desc">
+            <strong>Edinburgh EDI</strong> 13:10 → Amsterdam AMS (transfer 1h 20 min) → Warszawa WAW 18:55<br>
+            <span class="tag tok">KLM przez Amsterdam</span> &nbsp;Przybyć do terminalu najpóźniej o 11:10.
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -620,19 +635,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <thead><tr><th>#</th><th>Opis</th><th>Termin</th><th class="ra">Kwota</th><th>Status</th></tr></thead>
       <tbody>
         <tr><td>1</td><td>Premier Suites Edinburgh (3 apt., 11 os.)</td><td>3–4.06</td><td class="ra">5 616 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
-        <tr><td>2</td><td>Samochód nr 1 — Budget (Peugeot 5008, rez. 788038776)</td><td>3–8.06</td><td class="ra">1 577 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
-        <tr><td>3</td><td>Samochód nr 2 — Enterprise (rez. 710372260)</td><td>3–8.06</td><td class="ra">4 053 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>2</td><td>Samochód nr 1 — Budget, Peugeot 5008, rez. 788038776 · <a href="samoch%C3%B3d-1.pdf" target="_blank">📄</a></td><td>3–8.06</td><td class="ra">1 577 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>3</td><td>Samochód nr 2 — Enterprise, Ford Tourneo (9 os.), rez. 710372260 · <a href="Your%20voucher%20-%20Booking.com.pdf" target="_blank">📄</a></td><td>3–8.06</td><td class="ra">4 053 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
         <tr><td>4</td><td>Loch Rannoch Hotel — 1 pokój (11. os.)</td><td>4–5.06</td><td class="ra">812 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
         <tr><td>5</td><td>Loch Rannoch Hotel — 5 pokoi (10 os., rez. 6891.215.770)</td><td>4–5.06</td><td class="ra">3 872 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
         <tr><td>6</td><td>Prom CalMac — tam (Kennacraig → Islay, 10 os. + 2 auta)</td><td>5.06</td><td class="ra">1 000 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
         <tr><td>7</td><td>Prom CalMac — powrót (Islay → Kennacraig, 10 os. + 2 auta)</td><td>7.06</td><td class="ra">1 000 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
         <tr><td>8</td><td>Another Place, The Machrie (5 pokoi, 10 os.)</td><td>5–7.06</td><td class="ra">22 600 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
-        <tr><td>9</td><td>Lagavulin Classic Tour (11 biletów, godz. 10:15)</td><td>6.06</td><td class="ra">1 285 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
+        <tr><td>9</td><td>Lagavulin Classic Tour (11 biletów, godz. 10:00) · <a href="Safari.pdf" target="_blank">📄</a></td><td>6.06</td><td class="ra">1 285 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
         <tr><td>10</td><td>The Spires Edinburgh (3 apt., 11 os., rez. 6891.240.822)</td><td>7–8.06</td><td class="ra">4 458 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
         <tr><td>11</td><td>Prom CalMac — bilet 11. osoby (tam + powrót)</td><td>5.06, 7.06</td><td class="ra">441 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
         <tr><td>12</td><td>Nocleg 11. osoby — Islay, The Machrie (5–7.06)</td><td>5–7.06</td><td class="ra">3 790 zł</td><td><span class="spaid">Opłacone ✓</span></td></tr>
         <tr><td>13</td><td>Nocleg 11. osoby — Premier Suites &amp; The Spires</td><td>różne</td><td class="ra">0 zł</td><td><span class="spaid">Dołączone ✓</span></td></tr>
-        <tr><td>14</td><td>Loty</td><td>3.06, 8.06</td><td class="ra">—</td><td><span class="stodo">Opłacone osobno</span></td></tr>
+        <tr><td>14</td><td>Loty — WAW→AMS→EDI (12:25→16:10) i EDI→AMS→WAW (13:10→18:55), KLM</td><td>3.06, 8.06</td><td class="ra">—</td><td><span class="stodo">Opłacone osobno</span></td></tr>
         <tr style="font-weight:700;background:#f8f8f0;"><td colspan="3">RAZEM</td><td class="ra">50 503 zł</td><td></td></tr>
       </tbody>
     </table>
@@ -672,7 +687,116 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 </div>
 
-<div class="app-footer">Ostatnia aktualizacja: 24 maja 2026 &nbsp;·&nbsp; Claude — automatyczny monitoring Szkocja 2026</div>
+<!-- ======== FORMALITIES ======== -->
+<div id="formalities" class="tab-content">
+
+  <!-- CHECKLISTA -->
+  <div class="card"><div class="card-body">
+    <div class="sec-title">✅ Checklista — co każdy musi zrobić przed wyjazdem</div>
+    <div style="overflow-x:auto;">
+    <table class="data-tbl">
+      <thead><tr><th>Formalność</th><th>Kto</th><th>Koszt</th><th>Termin</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>🛂 <strong>Paszport biometryczny</strong> (ważny na dzień wyjazdu)</td><td>Każdy uczestnik</td><td>bezpłatny / 140 zł</td><td>Teraz!</td><td><span class="stodo">Sprawdzić datę ważności</span></td></tr>
+        <tr><td>📱 <strong>ETA</strong> — zezwolenie elektroniczne UK</td><td>Każdy uczestnik</td><td>~£10–20 / os.</td><td>Przed lotem</td><td><span class="stodo">Złożyć wniosek</span></td></tr>
+        <tr><td>💳 <strong>EKUZ</strong> — Europejska Karta Ubezpieczenia Zdrowotnego</td><td>Każdy uczestnik</td><td>bezpłatna</td><td>Przed lotem</td><td><span class="stodo">Wyrobić w NFZ/IKP</span></td></tr>
+        <tr><td>🏥 <strong>Ubezpieczenie turystyczne</strong> (transport medyczny!)</td><td>Każdy uczestnik</td><td>~30–60 zł/os.</td><td>Przed lotem</td><td><span class="stodo">Wykupić polisę</span></td></tr>
+        <tr><td>🚗 <strong>Prawo jazdy</strong> (ważne, min. 12 m-cy)</td><td>Kierowcy</td><td>—</td><td>Sprawdzić</td><td><span class="stodo">Sprawdzić datę ważności</span></td></tr>
+        <tr><td>💳 <strong>Karta kredytowa</strong> fizyczna (nie wirtualna) — depozyt £500</td><td>Kierowca Enterprise</td><td>blokada £500</td><td>Przy odbiorze auta</td><td><span class="stodo">Przygotować + znać PIN</span></td></tr>
+        <tr><td>📡 <strong>Roaming UK</strong> — sprawdzić u operatora komórkowego</td><td>Każdy uczestnik</td><td>wg taryfy</td><td>Przed lotem</td><td><span class="stodo">Sprawdzić u operatora</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div></div>
+
+  <!-- PASZPORT -->
+  <div class="card"><div class="card-body">
+    <div class="sec-title">🛂 Paszport — obowiązkowy (dowód osobisty NIE wystarczy)</div>
+    <div class="note note-red">⚠️ <strong>Od 1 stycznia 2026 r. dowód osobisty nie jest honorowany na granicy UK.</strong> Wymagany jest ważny paszport biometryczny. Wjazd z dowodem = odmowa wjazdu i powrót na koszt własny.</div>
+    <div class="facts" style="margin-top:12px;">
+      <div class="fact"><div class="fi">📘</div><div class="ft"><strong>Paszport biometryczny</strong> — jedyny akceptowany dokument. Musi być ważny przez cały pobyt (3–8.06.2026). Zalecany zapas co najmniej 6 miesięcy.</div></div>
+      <div class="fact"><div class="fi">👶</div><div class="ft"><strong>Dzieci</strong> — każde dziecko musi mieć własny paszport. Wpisany do paszportu rodzica nie wystarczy.</div></div>
+      <div class="fact"><div class="fi">⏱️</div><div class="ft"><strong>Czas wyrobienia</strong> — standardowy: ok. 30 dni. Ekspresowy (od 1 dnia do tygodnia): dopłata ~200 zł. Działać teraz!</div></div>
+      <div class="fact"><div class="fi">🏛️</div><div class="ft"><strong>Gdzie?</strong> — dowolny urząd gminy/miasta. Wniosek można wypełnić online na obywatel.gov.pl, ale odbiór osobisty jest konieczny.</div></div>
+    </div>
+  </div></div>
+
+  <!-- ETA -->
+  <div class="card"><div class="card-body">
+    <div class="sec-title">📱 ETA — Electronic Travel Authorisation (obowiązkowe od 25.02.2026)</div>
+    <div class="note note-red">⚠️ <strong>Bez ETA linia lotnicza nie wpuści na pokład samolotu do UK.</strong> Obowiązuje każdego pasażera — w tym dzieci i niemowlęta.</div>
+    <div class="facts" style="margin-top:12px;">
+      <div class="fact"><div class="fi">💷</div><div class="ft"><strong>Koszt</strong> — £10–20 od osoby. Płatność kartą online. Dzieci płacą tak samo.</div></div>
+      <div class="fact"><div class="fi">⏱️</div><div class="ft"><strong>Czas rozpatrywania</strong> — zazwyczaj kilka minut do kilku godzin, ale może trwać do 3 dni. Nie zostawiać na ostatnią chwilę!</div></div>
+      <div class="fact"><div class="fi">📅</div><div class="ft"><strong>Ważność</strong> — 2 lata od wydania lub do wygaśnięcia paszportu (co nastąpi wcześniej). Wielokrotne wjazdy.</div></div>
+      <div class="fact"><div class="fi">🔗</div><div class="ft"><strong>Jak złożyć wniosek?</strong> — Przez aplikację "UK ETA" (App Store / Google Play) lub na stronie gov.uk/eta. Potrzebny: paszport, zdjęcie twarzy przez telefon, karta płatnicza.</div></div>
+      <div class="fact"><div class="fi">🔢</div><div class="ft"><strong>Każdy osobno</strong> — ETA jest przypisana do konkretnego numeru paszportu. Jeden wniosek = jedna osoba.</div></div>
+      <div class="fact"><div class="fi">✅</div><div class="ft"><strong>To nie wiza!</strong> — ETA nie gwarantuje wjazdu (kontrola graniczna nadal decyduje), ale bez niej samolot nie zabierze na pokład.</div></div>
+    </div>
+    <div class="plinks" style="margin-top:10px;">
+      <a class="plink" href="https://www.gov.uk/eta" target="_blank">🇬🇧 gov.uk/eta — oficjalny wniosek</a>
+    </div>
+  </div></div>
+
+  <!-- EKUZ -->
+  <div class="card"><div class="card-body">
+    <div class="sec-title">💳 EKUZ — Europejska Karta Ubezpieczenia Zdrowotnego</div>
+    <div class="note note-green">✅ EKUZ <strong>działa w UK</strong> mimo Brexitu — na mocy umowy bilateralnej UE–UK daje dostęp do publicznej służby zdrowia (NHS) na zasadach analogicznych do rezydentów UK.</div>
+    <div class="facts" style="margin-top:12px;">
+      <div class="fact"><div class="fi">🏥</div><div class="ft"><strong>Co obejmuje</strong> — nagłe leczenie szpitalne, SOR, lekarz pierwszego kontaktu NHS, nagłe zabiegi. Bezpłatnie w placówkach publicznych NHS.</div></div>
+      <div class="fact"><div class="fi">❌</div><div class="ft"><strong>Czego NIE obejmuje</strong> — transport medyczny do Polski (helikopter, ambulans lotniczy), prywatne kliniki, planowane leczenie, leki na receptę (~£10/opakowanie), stomatologia.</div></div>
+      <div class="fact"><div class="fi">📋</div><div class="ft"><strong>Jak wyrobić</strong> — bezpłatnie przez aplikację IKP (Internetowe Konto Pacjenta) lub w oddziale NFZ. Czas oczekiwania: od razu (IKP) lub kilka dni (karta fizyczna).</div></div>
+      <div class="fact"><div class="fi">⚠️</div><div class="ft"><strong>Ważny wniosek</strong> — EKUZ to nie pełne ubezpieczenie turystyczne! Nie pokrywa kosztów repatriacji. Do EKUZ warto dodać polisę turystyczną.</div></div>
+    </div>
+    <div class="plinks" style="margin-top:10px;">
+      <a class="plink" href="https://pacjent.gov.pl/ekuz" target="_blank">🏥 IKP — wyrobienie EKUZ online</a>
+      <a class="plink" href="https://www.nfz.gov.pl/dla-pacjenta/nasze-zdrowie-w-ue/leczenie-w-krajach-unii-europejskiej-i-efta/jak-wyrobic-karte-ekuz/" target="_blank">📋 NFZ — informacje o EKUZ</a>
+    </div>
+  </div></div>
+
+  <!-- UBEZPIECZENIE TURYSTYCZNE -->
+  <div class="card"><div class="card-body">
+    <div class="sec-title">🏥 Ubezpieczenie turystyczne — zalecane mimo EKUZ</div>
+    <div class="facts">
+      <div class="fact"><div class="fi">🚁</div><div class="ft"><strong>Transport medyczny</strong> — kluczowy element. Lot do Polski ambulansem lotniczym to koszt dziesiątek tysięcy złotych. EKUZ tego nie pokrywa.</div></div>
+      <div class="fact"><div class="fi">🏔️</div><div class="ft"><strong>Szkocja = góry i drogi</strong> — wycieczki w Highlands, jazda po górskich drogach, potencjalnie trudne warunki. Wypadki zdarzają się częściej niż w miastach.</div></div>
+      <div class="fact"><div class="fi">💊</div><div class="ft"><strong>Leki i prywatne kliniki</strong> — w UK czas oczekiwania na NHS może być długi. Prywatna wizyta: od £100–300. Dobra polisa pokrywa to bez dopłat.</div></div>
+      <div class="fact"><div class="fi">💰</div><div class="ft"><strong>Koszt</strong> — ok. 30–60 zł/os. na tydzień. Warto szukać polisy z pakietem: KL (koszty leczenia) + NNW + bagaż + OC. Np. Allianz, TU Europa, Compensa.</div></div>
+      <div class="fact"><div class="fi">📞</div><div class="ft"><strong>Ważne</strong> — przed kupnem sprawdzić, czy polisa obejmuje aktywności (jazda samochodem, trekking w górach). Standardowe polisy często wyłączają sporty.</div></div>
+    </div>
+  </div></div>
+
+  <!-- SAMOCHODY I JAZDA -->
+  <div class="card"><div class="card-body">
+    <div class="sec-title">🚗 Samochody i jazda w Szkocji</div>
+    <div class="note note-red">⬅️ <strong>Ruch lewostronny!</strong> W całej Szkocji (i UK) obowiązuje ruch lewostronny. Szczególna ostrożność na rondach, skrzyżowaniach i przy wyprzedzaniu.</div>
+    <div class="facts" style="margin-top:12px;">
+      <div class="fact"><div class="fi">📄</div><div class="ft"><strong>Prawo jazdy</strong> — polskie prawo jazdy jest w pełni honorowane w UK. Musi być ważne i posiadane minimum 12 miesięcy. Cyfrowe PJ nie jest akceptowane — potrzebny fizyczny dokument.</div></div>
+      <div class="fact"><div class="fi">💳</div><div class="ft"><strong>Enterprise — wymagania przy odbiorze</strong> — fizyczna karta kredytowa (nie debetowa, nie wirtualna) na nazwisko kierowcy, blokada £500 depozytu, znajomość PIN-u, boarding pass, paszport + prawo jazdy.</div></div>
+      <div class="fact"><div class="fi">🔞</div><div class="ft"><strong>Wiek minimalny Enterprise</strong> — minimum 30 lat (wpisane w rezerwacji!). Sprawdź, kto będzie odbierać auto.</div></div>
+      <div class="fact"><div class="fi">⬅️</div><div class="ft"><strong>Ronda i skrzyżowania</strong> — w UK ronda objeżdża się zgodnie z ruchem wskazówek zegara (wjeżdża się z lewej, wyprzedzanie po prawej). Kierowca siedzi po prawej stronie auta.</div></div>
+      <div class="fact"><div class="fi">🛣️</div><div class="ft"><strong>Górskie drogi</strong> — wiele dróg w Highlands to single-track roads z mijankami (passing places). Zasada: ustępuje ten, kto ma mijankę po swojej stronie. Nie używać mijanki do wyprzedzania!</div></div>
+      <div class="fact"><div class="fi">⛽</div><div class="ft"><strong>Paliwo</strong> — Enterprise: polityka "like for like" — zwrot z takim samym poziomem paliwa jak przy odbiorze. Dopłata za braki: koszt paliwa + £15 fee. Tankować przed zwrotem!</div></div>
+      <div class="fact"><div class="fi">📵</div><div class="ft"><strong>Telefon za kierownicą</strong> — kara w UK: £200 + 6 punktów karnych. Używać tylko głośnomówiący lub zestawu BT. Prawo jest tu rygorystycznie egzekwowane.</div></div>
+    </div>
+  </div></div>
+
+  <!-- SIEĆ I PIENIĄDZE -->
+  <div class="card"><div class="card-body">
+    <div class="sec-title">📡 Sieć komórkowa, pieniądze i inne praktyczne info</div>
+    <div class="facts">
+      <div class="fact"><div class="fi">📱</div><div class="ft"><strong>Roaming w UK</strong> — UK jest poza UE, więc tanie roaming unijne nie obowiązują. Sprawdzić u swojego operatora (Play, Orange, T-Mobile, Plus) — UK jest przeważnie naliczane oddzielnie. Alternatywa: lokalna karta SIM (EE, giffgaff, Tesco Mobile — od £5–10 na tydzień).</div></div>
+      <div class="fact"><div class="fi">💷</div><div class="ft"><strong>Waluta</strong> — Funt szterling (£). W Szkocji w obiegu są też szkockie banknoty — te same nominały, tak samo ważne jak angielskie, ale niektóre sklepy w Anglii mogą je nie przyjmować (to nas nie dotyczy).</div></div>
+      <div class="fact"><div class="fi">💳</div><div class="ft"><strong>Płatności kartą</strong> — wszędzie akceptowane: sklepy, puby, restauracje, promy CalMac, stacje benzynowe. Gotówka rzadko potrzebna. Uwaga: bank może naliczać prowizję za transakcje walutowe (~1–3%).</div></div>
+      <div class="fact"><div class="fi">🌤️</div><div class="ft"><strong>Pogoda w Szkocji</strong> — czerwiec to najlepszy miesiąc, ale pogoda bywa nieprzewidywalna. Przygotować: przeciwdeszczową kurtkę, warstwy termiczne. Temperatury: 12–18°C. Słońce zachodzi po 22:00!</div></div>
+      <div class="fact"><div class="fi">🔌</div><div class="ft"><strong>Gniazdka</strong> — UK używa gniazdek Type G (trójkąt). Potrzebne adaptery! Napięcie: 230V / 50Hz — polskie urządzenia działają bez problemu.</div></div>
+      <div class="fact"><div class="fi">🕐</div><div class="ft"><strong>Strefa czasowa</strong> — UK jest w BST (British Summer Time) w czerwcu, czyli UTC+1 — o 1 godzinę do tyłu względem Polski. Pamiętać przy rezerwacjach i budzikach!</div></div>
+    </div>
+  </div></div>
+
+</div>
+
+<div class="app-footer">Ostatnia aktualizacja: 25 maja 2026 &nbsp;·&nbsp; Claude — automatyczny monitoring Szkocja 2026</div>
 
 <script>
 function showTab(name, btn) {
